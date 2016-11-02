@@ -1,0 +1,28 @@
+* {
+	border: 1px solid #fff;
+
+}
+
+body {
+	background-color: #006400;
+	min-height: 100vh;
+}
+
+.col-deck-1 {
+	width: calc(100% / 7);
+}
+
+.col-deck-4 {
+	width: calc(100% / 7 * 4);
+}
+
+.col-deck-offset-1 {
+	margin-left: calc(100% / 7);
+}
+
+.deck {
+	height: 300px;
+	background-color: #000;
+	display: inline-block;
+	float: left;
+}
