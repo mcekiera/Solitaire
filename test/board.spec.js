@@ -1,4 +1,5 @@
 describe("Game board setting", function() {
+	"use strict";
 
     it("setting board makes deck empty", function() {
         var deck = new Deck();

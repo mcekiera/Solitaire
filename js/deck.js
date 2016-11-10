@@ -1,5 +1,6 @@
 function Deck() {
     "use strict";
+    
     var that = this;
     var colors = ["Spades", "Clubs", "Hearts", "Tiles"];
     var figures = [1,2,3,4,5,6,7,8,9,10,11,12,13];
@@ -14,7 +15,7 @@ function Deck() {
     this.cards =  set;
     this.getCard = function() {
         var rand = Math.random() * that.cards.length;
-        return that.cards.pop(rand);
+        return that.cards.pop();
     };
 }
 

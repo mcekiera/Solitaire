@@ -1,6 +1,5 @@
 * {
 	border: 1px solid #fff;
-
 }
 
 body {
@@ -49,7 +48,7 @@ body {
 		content: "A";
 	}
 
-	
+
 
 	&:before,
 	&:after {
@@ -58,7 +57,7 @@ body {
 		font-size: 12px;
 		position: absolute;
 		color: inherit;
-	}	
+	}
 
 	&:after {
 		bottom: 0;
