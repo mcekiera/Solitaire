@@ -26,3 +26,45 @@ body {
 	display: inline-block;
 	float: left;
 }
+
+/* ==== CARDS ==== */
+
+.card {
+	position: absolute;
+	left: 0;
+	top: 0;
+	min-width: 75px;
+	min-height: 100px;
+	background-color: #fff;
+	border: 1px solid #000;
+
+	&--f1 span:before {
+		padding-right: 7px;
+		position: absolute;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 50px;
+		line-height: 95px;
+		text-align: center;
+		content: "A";
+	}
+
+	
+
+	&:before,
+	&:after {
+		font-family: "Flaticon";
+		content: "\f102";
+		font-size: 12px;
+		position: absolute;
+		color: inherit;
+	}	
+
+	&:after {
+		bottom: 0;
+		right: 0;
+		transform: rotate(180deg);
+	}
+
+
+}
