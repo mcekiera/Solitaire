@@ -82,10 +82,10 @@ describe("Game board setting", function() {
         var deck = new Deck();
         var board = new Board();
         board.set(deck);
-        expect(board.fundations["tiles"].length).toBe(0);
-        expect(board.fundations["clubs"].length).toBe(0);
-        expect(board.fundations["spades"].length).toBe(0);
-        expect(board.fundations["hearts"].length).toBe(0);
+        expect(board.fundations.tiles.length).toBe(0);
+        expect(board.fundations.clubs.length).toBe(0);
+        expect(board.fundations.spades.length).toBe(0);
+        expect(board.fundations.hearts.length).toBe(0);
     });
 
 });

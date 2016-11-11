@@ -22,6 +22,7 @@ describe("Deck", function() {
     it("has 13 Tiles cards", function() {
         var deck = new Deck();
         var tiles = deck.cards.filter(card => card.color === "Tiles");
+        console.log(tiles);
         expect(tiles.length === 13).toBe(true);
     });
 
