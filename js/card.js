@@ -6,7 +6,7 @@
 $(function() {
 
 
-	var card = $( ".card" ).draggable({
+	var card = $(".card" ).draggable({
 		zIndex: 99999999,
 		stack: ".card",
 
