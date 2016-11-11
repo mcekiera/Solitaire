@@ -1,73 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cards</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/cards.css" type="text/css">
-    <link rel="stylesheet" href="ico/flaticon.css" type="text/css">
-</head>
-<body>
-<div class="card card--spades" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span>
-</div>
-<div class="card card--spades" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--spades" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cards</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/cards.css" type="text/css">
+        <link rel="stylesheet" href="ico/flaticon.css" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"
+                type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="card card--spades" data-figure="A" id="first"><span class="card__fig"><span
+                class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span>
+        </div>
+        <div class="card card--spades" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--spades" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
 
-<div class="card card--clubs" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--clubs" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--clubs" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
 
-<div class="card card--tiles" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--tiles" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--tiles" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
 
-<div class="card card--hearts" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span>
-</div>
-<div class="card card--hearts" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
-<div class="card card--hearts" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
-
-</body>
+        <div class="card card--hearts" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="4"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="5"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="6"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="7"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="8"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="9"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="10"><span class="card__fig"><span class="card__interior"></span></span>
+        </div>
+        <div class="card card--hearts" data-figure="J"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="Q"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <div class="card card--hearts" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
+        <script src="js/card.js"></script>
+    </body>
 </html>

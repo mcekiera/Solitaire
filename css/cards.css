@@ -21,7 +21,7 @@ body {
   min-width: 75px;
   max-height: 100px;
   max-width: 75px;
-  position: absolute;
+  position: relative;
   top: 0;
   overflow: visible; }
   .card ~ .card {
