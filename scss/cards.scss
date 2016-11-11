@@ -1,10 +1,47 @@
+//SASS
+
+$colors_list: "clubs", "spades", "tiles", "hearts";
 $hearts: "\f104";
 $clubs: "\f100";
 $spades: "\f102";
-$tiles: "\f103";
+$tiles: "\f101";
+$blacks: #000000;
+$reds: #FF0000;
+
+@function getColor($color) {
+  @if ($color == 'spades') {
+	@return $spades;
+  } @else if ($color == 'clubs') {
+	@return $clubs;
+  } @else if ($color == 'hearts') {
+	@return $hearts;
+  } @else if ($color == 'tiles') {
+	@return $tiles;
+  }
+}
+
+@mixin fullCard() {
+  left: 0;
+  min: {
+	height: 100%;
+	width: 100%;
+  }
+  position: absolute;
+  top: 0;
+}
+
+@mixin rotate($deg) {
+  -ms-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+/* ==== GLOBAL ==== */
 
 * {
   border: 1px solid #fff;
+  box-sizing: border-box;
+  margin-left: -1px;
 }
 
 body {
@@ -23,46 +60,77 @@ body {
   left: 0;
   min-height: 100px;
   min-width: 75px;
-  position: relative;
+  max-height: 100px;
+  max-width: 75px;
+  position: absolute;
   top: 0;
+  overflow: visible;
+
+  & ~ .card {
+	margin-top: 15%;
+	z-index: 9999;
+  }
 
   &::before,
   &::after {
-	color: #000000;
+	@include fullCard;
 	content: attr(data-figure);
-	left: 0;
-	min-height: 100%;
-	min-width: 100%;
 	padding-left: 4%;
-	position: absolute;
-	top: 0;
   }
 
   &::after,
   &__fig::after {
-	transform: rotate(180deg);
+	@include rotate(180deg);
   }
 
+  &__fig,
+  &__interior {
+	@include fullCard;
+  }
   &__fig::before,
   &__fig::after {
+	@include fullCard;
 	color: inherit;
-	content: "\f102";
-	font-family: "Flaticon";
-	position: absolute;
-	min-height: 100%;
-	min-width: 100%;
-	top: 0;
-	left: 0;
-	padding-top: 17%;
-	padding-left: 2%;
+	content: "";
+	font-family: "Flaticon", fantasy;
+	padding: {
+	  top: 17%;
+	  left: 2%;
+	}
   }
 
-  &__interior::before {
-	content: attr(data-interior);
-	font-family: "Flaticon";
-	left: 0;
-	min-height: 100%;
-	min-width: 100%;
+  &__interior {
+
+	&::before {
+	  @include fullCard;
+	  font: {
+		family: "Flaticon", fantasy;
+		size: 36px;
+	  }
+	  padding-top: 30%;
+	  text-align: center;
+	}
   }
 
+  @each $color in $colors_list {
+	&--#{$color} {
+	  .card__fig::before,
+	  .card__fig::after,
+	  .card__interior::before {
+		content: getColor(#{$color});
+	  }
+	}
+  }
+
+  &--spades,
+  &--clubs {
+	color: $blacks;
+  }
+
+  &--tiles,
+  &--hearts {
+	color: $reds;
+  }
 }
+
+
