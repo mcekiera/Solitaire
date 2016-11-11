@@ -2,8 +2,7 @@
 /* ==== GLOBAL ==== */
 * {
   border: 1px solid #fff;
-  box-sizing: border-box;
-  margin-left: -1px; }
+  box-sizing: border-box; }
 
 body {
   background-color: #006400;
@@ -21,12 +20,9 @@ body {
   min-width: 75px;
   max-height: 100px;
   max-width: 75px;
-  position: relative;
+  position: absolute;
   top: 0;
   overflow: visible; }
-  .card ~ .card {
-    margin-top: 15%;
-    z-index: 9999; }
   .card::before, .card::after {
     left: 0;
     min-height: 100%;

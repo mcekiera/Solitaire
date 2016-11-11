@@ -41,7 +41,6 @@ $reds: #FF0000;
 * {
   border: 1px solid #fff;
   box-sizing: border-box;
-  margin-left: -1px;
 }
 
 body {
@@ -62,14 +61,9 @@ body {
   min-width: 75px;
   max-height: 100px;
   max-width: 75px;
-  position: relative;
+  position: absolute;
   top: 0;
   overflow: visible;
-
-  & ~ .card {
-	margin-top: 15%;
-	z-index: 9999;
-  }
 
   &::before,
   &::after {
