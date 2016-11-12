@@ -8,7 +8,8 @@ function Deck() {
 
 	for (var i = 0; i < colors.length; i++) {
 		for (var j = 0; j < figures.length; j++) {
-			set.push(new Card(figures[j], colors[i]));
+			var card = new Card(figures[j], colors[i])
+			set.push(card);
 		}
 	}
 

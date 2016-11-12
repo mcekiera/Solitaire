@@ -1,49 +1,25 @@
 * {
-  border: 1px solid #fff; }
+  border: 1px solid #fff;
+  box-sizing: border-box; }
 
 body {
   background-color: #006400;
-  min-height: 100vh;
-  padding: 10px; }
+  min-height: 100vh; }
 
-/* ==== CARDS ==== */
-.card {
-  background-color: #fff;
-  border: 1px solid #000;
+.col-deck-1 {
+  min-width: 80px; }
+
+.col-deck-4 {
+  min-width: 320px; }
+
+.col-deck-offset-1 {
+  margin-left: 80px; }
+
+.deck {
+  height: 300px;
+  background-color: #000;
   display: inline-block;
-  font-size: 12px;
-  left: 0;
-  min-height: 100px;
-  min-width: 75px;
-  position: relative;
-  top: 0; }
-  .card::before, .card::after {
-    color: #000000;
-    content: attr(data-figure);
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    padding-left: 4%;
-    position: absolute;
-    top: 0; }
-  .card::after, .card__fig::after {
-    transform: rotate(180deg); }
-  .card__fig::before, .card__fig::after {
-    color: inherit;
-    content: "\f102";
-    font-family: "Flaticon";
-    position: absolute;
-    min-height: 100%;
-    min-width: 100%;
-    top: 0;
-    left: 0;
-    padding-top: 17%;
-    padding-left: 2%; }
-  .card__interior::before {
-    content: attr(data-interior);
-    font-family: "Flaticon";
-    left: 0;
-    min-height: 100%;
-    min-width: 100%; }
+  float: left;
+  position: relative; }
 
 /*# sourceMappingURL=style.css.map */
