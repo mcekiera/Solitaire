@@ -28,9 +28,10 @@ describe("Deck", function() {
     it("each figure has 4 colors", function() {
         var deck = new Deck();
         var figure = deck.cards.filter(card => card.figure === 1);
+        var card = new Card(1,"Clubs");
         figure.forEach(console.log);
         expect(figure.length === 4).toBe(true);
-        expect(figure).toContain(function() {return new Card(1,"Clubs")}());
+        expect(figure).toContain(card);
         expect(figure).toContain({figure: 1, color: "Hearts"});
         expect(figure).toContain({figure: 1, color: "Tiles"});
         expect(figure).toContain({figure: 1, color: "Spades"});

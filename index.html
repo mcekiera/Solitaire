@@ -17,7 +17,7 @@
 		<section class="board container-flex">
 			<div class="container board__top">
 				<div class="row">
-					<div class="col-deck-1 deck">
+					<div id="js-stock" class="col-deck-1 deck">
                         <div class="card card--spades" data-figure="A"><span class="card__fig"><span class="card__interior"></span></span></div>
                         <div class="card card--spades" data-figure="2"><span class="card__fig"><span class="card__interior"></span></span></div>
                         <div class="card card--spades" data-figure="3"><span class="card__fig"><span class="card__interior"></span></span></div>
@@ -77,19 +77,24 @@
                         <div class="card card--hearts" data-figure="K"><span class="card__fig"><span class="card__interior"></span></span></div>
 
                     </div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-4 col-deck-offset-1 deck"></div>
+					<div id="waste" class="col-deck-1 deck"></div>
+					<div class="col-deck-4 col-deck-offset-1 deck">
+                        <div id="js-foundation-spades" class="col-deck-1 deck"></div>
+                        <div id="js-foundation-clubs" class="col-deck-1 deck"></div>
+                        <div id="js-foundation-tiles" class="col-deck-1 deck"></div>
+                        <div id="js-foundation-hearts" class="col-deck-1 deck"></div>
+                    </div>
 				</div>
 			</div>
 			<div class="container board__bottom">
 				<div class="row">
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
-					<div class="col-deck-1 deck"></div>
+					<div id="js-tableau-1" class="col-deck-1 deck"></div>
+					<div id="js-tableau-2" class="col-deck-1 deck"></div>
+					<div id="js-tableau-3" class="col-deck-1 deck"></div>
+					<div id="js-tableau-4" class="col-deck-1 deck"></div>
+					<div id="js-tableau-5" class="col-deck-1 deck"></div>
+					<div id="js-tableau-6" class="col-deck-1 deck"></div>
+					<div id="js-tableau-7" class="col-deck-1 deck"></div>
 				</div>
 			</div>
 		</section>
