@@ -2,14 +2,14 @@ function Deck() {
 	"use strict";
 
 	var that = this;
-	var colors = ["Spades", "Clubs", "Hearts", "Tiles"];
+	var colors = ["spades", "clubs", "hearts", "tiles"];
 	var figures = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 	var set = [];
 
 	for (var i = 0; i < colors.length; i++) {
 		for (var j = 0; j < figures.length; j++) {
-			var card = new Card(figures[j], colors[i])
-			set.push(card);
+			// var card = new Card(figures[j], colors[i]);
+			set.push(new Card(figures[j], colors[i]));
 		}
 	}
 
@@ -26,7 +26,8 @@ function Card(figure, color) {
 	var that = this;
 	this.figure = figure;
 	this.color = color;
-	this.toString = function () {
-		return that.col + that.fig;
-	};
+	// this.toString = function () {
+	// 	return that.col + that.fig;
+	// };
+	// this.html = "<div class=\"card card--" + this.color + "\" data-figure=\"" + this.figure + "\"><span class=\"card__fig\"><span class=\"card__interior\"></span></span></div>";
 }

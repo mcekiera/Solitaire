@@ -1,10 +1,10 @@
 //SASS
 
 $colors_list: "clubs", "spades", "tiles", "hearts";
-$hearts: "\f104";
-$clubs: "\f100";
-$spades: "\f102";
-$tiles: "\f101";
+$hearts: "\2665";
+$clubs: "\2663";
+$spades: "\2660";
+$tiles: "\2666";
 $blacks: #000000;
 $reds: #FF0000;
 
@@ -87,7 +87,7 @@ body {
 	@include fullCard;
 	color: inherit;
 	content: "";
-	font-family: "Flaticon", fantasy;
+	//font-family: "Flaticon", fantasy;
 	padding: {
 	  top: 17%;
 	  left: 2%;
@@ -99,7 +99,7 @@ body {
 	&::before {
 	  @include fullCard;
 	  font: {
-		family: "Flaticon", fantasy;
+		//family: "Flaticon", fantasy;
 		size: 36px;
 	  }
 	  padding-top: 30%;

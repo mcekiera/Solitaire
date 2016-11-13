@@ -49,7 +49,6 @@ body {
     top: 0;
     color: inherit;
     content: "";
-    font-family: "Flaticon", fantasy;
     padding-top: 17%;
     padding-left: 2%; }
   .card__interior::before {
@@ -58,26 +57,25 @@ body {
     min-width: 100%;
     position: absolute;
     top: 0;
-    font-family: "Flaticon", fantasy;
     font-size: 36px;
     padding-top: 30%;
     text-align: center; }
   .card--clubs .card__fig::before,
   .card--clubs .card__fig::after,
   .card--clubs .card__interior::before {
-    content: ""; }
+    content: "♣"; }
   .card--spades .card__fig::before,
   .card--spades .card__fig::after,
   .card--spades .card__interior::before {
-    content: ""; }
+    content: "♠"; }
   .card--tiles .card__fig::before,
   .card--tiles .card__fig::after,
   .card--tiles .card__interior::before {
-    content: ""; }
+    content: "♦"; }
   .card--hearts .card__fig::before,
   .card--hearts .card__fig::after,
   .card--hearts .card__interior::before {
-    content: ""; }
+    content: "♥"; }
   .card--spades, .card--clubs {
     color: #000000; }
   .card--tiles, .card--hearts {
