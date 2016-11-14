@@ -40,7 +40,7 @@ describe("Deck", function() {
 		expect(deck.cards.length === 52).toBe(true);
 		for(var i = 51; i >= 0; i--) {
 			var card = deck.getCard();
-			console.log(deck.cards.length);
+			console.log(card.$element.prop('outerHTML'));
 			expect(deck.cards.length === 52).toBe(false);
 			expect(deck.cards.length === i).toBe(true);
 		}

@@ -6,6 +6,12 @@ body {
   background-color: #006400;
   min-height: 100vh; }
 
+.board__top {
+  min-height: 30vh; }
+
+.board__bottom {
+  min-height: 70vh; }
+
 .col-deck-1 {
   min-width: 80px; }
 
@@ -16,10 +22,11 @@ body {
   margin-left: 80px; }
 
 .deck {
-  height: 300px;
   background-color: #000;
   display: inline-block;
   float: left;
-  position: relative; }
+  position: relative;
+  height: 100%;
+  min-height: 100px; }
 
 /*# sourceMappingURL=style.css.map */

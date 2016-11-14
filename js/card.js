@@ -1,7 +1,4 @@
-
-
 $(function() {
-
 
 	var card = $(".card" ).draggable({
 		zIndex: 99999999,
