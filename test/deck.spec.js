@@ -27,7 +27,7 @@ describe("Deck", function() {
 
     it("has figures in 4 colors", function() {
         var deck = new Deck();
-        var figure = deck.cards.filter(card => card.figure === 1);
+        var figure = deck.cards.filter(card => card.figure === 'A');
         expect(figure.length === 4).toBe(true);
         expect(figure.filter(card => card.color === 'clubs').length === 1).toBe(true);
         expect(figure.filter(card => card.color === 'spades').length === 1).toBe(true);
@@ -36,10 +36,14 @@ describe("Deck", function() {
     });
 
     it("length should decrease after it return random card", function() {
-        var deck = new Deck();
-        expect(deck.cards.length === 52).toBe(true);
-        var card = deck.getCard();
-        expect(deck.cards.length === 52).toBe(false);
+		var deck = new Deck();
+		expect(deck.cards.length === 52).toBe(true);
+		for(var i = 51; i >= 0; i--) {
+			var card = deck.getCard();
+			console.log(deck.cards.length);
+			expect(deck.cards.length === 52).toBe(false);
+			expect(deck.cards.length === i).toBe(true);
+		}
     });
 
 	it("should not contain card it already returned", function() {
@@ -49,6 +53,5 @@ describe("Deck", function() {
 		deck.cards.push(card);
 		expect(deck.cards).toContain(card);
 	});
-
 
 });

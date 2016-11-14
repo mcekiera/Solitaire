@@ -2,23 +2,23 @@ function Deck() {
 	"use strict";
 
 	var that = this;
-	var colors = ["spades", "clubs", "hearts", "tiles"];
-	var figures = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 	var set = [];
 
-	for (var i = 0; i < colors.length; i++) {
-		for (var j = 0; j < figures.length; j++) {
-			// var card = new Card(figures[j], colors[i]);
-			set.push(new Card(figures[j], colors[i]));
+	for (var i = 0; i < Deck.colors.length; i++) {
+		for (var j = 0; j < Deck.figures.length; j++) {
+			set.push(new Card(Deck.figures[j], Deck.colors[i]));
 		}
 	}
 
 	this.cards = set;
 	this.getCard = function () {
 		var rand = Math.random() * that.cards.length;
-		return that.cards.pop();
+		return that.cards.splice(rand,1);
 	};
 }
+
+Deck.colors = ["spades", "clubs", "hearts", "tiles"];
+Deck.figures = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
 function Card(figure, color) {
 	"use strict";
@@ -26,8 +26,12 @@ function Card(figure, color) {
 	var that = this;
 	this.figure = figure;
 	this.color = color;
-	// this.toString = function () {
-	// 	return that.col + that.fig;
-	// };
-	// this.html = "<div class=\"card card--" + this.color + "\" data-figure=\"" + this.figure + "\"><span class=\"card__fig\"><span class=\"card__interior\"></span></span></div>";
+	this.toString = function () {
+		return that.col + that.figure;
+	};
+	this.$element = $('.card')
+		.append('<span class="card__fig"><span class="card__interior"></span></span>')
+		.addClass('card' + color)
+		.attr('data-figure', this.figure);
+
 }
