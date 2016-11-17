@@ -29,24 +29,23 @@ body {
     min-width: 100%;
     position: absolute;
     top: 0;
+    z-index: auto;
     content: attr(data-figure);
     padding-left: 4%; }
-  .card::after, .card__fig::after {
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg); }
   .card__fig, .card__interior {
     left: 0;
     min-height: 100%;
     min-width: 100%;
     position: absolute;
-    top: 0; }
+    top: 0;
+    z-index: auto; }
   .card__fig::before, .card__fig::after {
     left: 0;
     min-height: 100%;
     min-width: 100%;
     position: absolute;
     top: 0;
+    z-index: auto;
     color: inherit;
     content: "";
     padding-top: 17%;
@@ -57,6 +56,7 @@ body {
     min-width: 100%;
     position: absolute;
     top: 0;
+    z-index: auto;
     font-size: 36px;
     padding-top: 30%;
     text-align: center; }
@@ -80,5 +80,16 @@ body {
     color: #000000; }
   .card--tiles, .card--hearts {
     color: #FF0000; }
+  .card__back {
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: auto;
+    background: repeating-linear-gradient(45deg, white, white 2px, red 2px, red 4px);
+    z-index: 2; }
+    .flip .card__back {
+      visibility: hidden; }
 
 /*# sourceMappingURL=cards.css.map */

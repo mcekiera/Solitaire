@@ -28,6 +28,7 @@ $reds: #FF0000;
   }
   position: absolute;
   top: 0;
+  z-index: auto;
 }
 
 @mixin rotate($deg) {
@@ -73,13 +74,9 @@ body {
 	padding-left: 4%;
   }
 
-  &::after,
-  &__fig::after {
-	@include rotate(180deg);
-  }
-
   &__fig,
   &__interior {
+
 	@include fullCard;
   }
   &__fig::before,
@@ -95,6 +92,7 @@ body {
   }
 
   &__interior {
+
 
 	&::before {
 	  @include fullCard;
@@ -130,6 +128,19 @@ body {
   &--hearts {
 	color: $reds;
   }
+
+  &__back {
+	@include fullCard;
+	background: repeating-linear-gradient(45deg, white, white 2px, red 2px, red 4px);
+	z-index: 2;
+
+	.flip & {
+	  visibility: hidden;
+	}
+  }
+
+
 }
+
 
 

@@ -34,8 +34,8 @@ function Deck() {
 
 		function createElement() {
 			var el = $('<div></div>');
-			el.append('<span class="card__fig"><span class="card__interior"></span></span>');
-			el.addClass('card card--' + that.color);
+			el.append('<span class="card__fig"><span class="card__interior flip"><div class="card__back"></div></span></span>');
+			el.addClass('card flip card--' + that.color);
 			el.attr('data-figure', that.figure);
 			return el;
 		}
