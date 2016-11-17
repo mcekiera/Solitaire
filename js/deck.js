@@ -1,3 +1,10 @@
+/**
+ * Object represents full deck of 52 playing cards. Cards are available by array in cards property, or by separate
+ *  for each card, named with id property of given card. The constructor has two properties, colors - the set of permitted
+ * color values, and ranks - set of permitted rank property values.
+ * @constructor
+ */
+
 function Deck() {
 	"use strict";
 	var that = this;

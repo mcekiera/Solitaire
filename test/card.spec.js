@@ -30,7 +30,9 @@ describe('Object, representing a single card', function () {
 		expect(other1.isRankBelow(other2)).toBe(false);
 		expect(other1.isRankBelow(other1)).toBe(false);
 		var other3 = new Card('tiles', '8');
-		expect(other3.isRankBelow(other2)).toBe(true);
+		expect(other3.isRankBelow(other2)).toBe(true)
+		expect(other1.isRankBelow(new Card('tiles','1'))).toBe(false);
+
 	});
 
 	it('should return true if given card is in same color group as other', function () {
