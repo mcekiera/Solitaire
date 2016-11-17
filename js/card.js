@@ -1,31 +1,27 @@
-$(function() {
+function Card(color, rank) {
+	this.color = color;
+	this.rank = rank;
+	this.id = this.color + '-' + this.rank;
+	this.$element = $('#' + this.id);
+}
 
-	var card = $(".card" ).draggable({
-		zIndex: 99999999,
-		stack: ".card",
+Card.prototype.isSameColor = function (card) {
+	return this.color === card.color;
+};
 
-		drag: function(){
-			var offset = $(this).offset(),
-				xPos = offset.left,
-				yPos = offset.top;
-		},
+Card.prototype.isRankOver = function (card) {
+	return Deck.ranks.indexOf(this.rank) === Deck.ranks.indexOf(card.rank) + 1;
+};
 
-		revert : function() {
-			$(this).data("uiDraggable").originalPosition = {
-				top : 0,
-				left : 0
-			};
-			return true;
-		}
-	});
-	$('.deck').droppable({
-		drop: function (event, ui) {
-			var target = $(event.target);
-			$(ui.draggable).appendTo(target);
-			$(ui.draggable).css("left", 0);
-			$(ui.draggable).css("top", 0);
-		}
-	});
+Card.prototype.isRankBelow = function (card) {
+	return Deck.ranks.indexOf(this.rank) === Deck.ranks.indexOf(card.rank) - 1;
+};
 
+Card.prototype.isSameColorGroup = function (card) {
+	if (this.color === 'spades' || this.color ===  'clubs') {
+		return card.color === 'spades' || card.color === 'clubs';
+	} else {
+		return card.color === 'tiles' || card.color === 'hearts';
+	}
 
-});
+};

@@ -1,57 +1,42 @@
-describe("Deck", function() {
-    "use strict";
+describe('Deck object, which represents deck of cards', function () {
+	var deck;
 
-    it("has 13 Clubs cards", function() {
-        var deck = new Deck();
-        var clubs = deck.cards.filter(card => card.color === "clubs");
-        expect(clubs.length === 13).toBe(true);
-    });
-
-    it("has 13 Spades cards", function() {
-        var deck = new Deck();
-        var spades = deck.cards.filter(card => card.color === "spades");
-        expect(spades.length === 13).toBe(true);
-    });
-
-    it("has 13 Hearts cards", function() {
-        var deck = new Deck();
-        var hearts = deck.cards.filter(card => card.color === "hearts");
-        expect(hearts.length === 13).toBe(true);
-    });
-
-    it("has 13 Tiles cards", function() {
-        var deck = new Deck();
-        var tiles = deck.cards.filter(card => card.color === "tiles");
-        expect(tiles.length === 13).toBe(true);
-    });
-
-    it("has figures in 4 colors", function() {
-        var deck = new Deck();
-        var figure = deck.cards.filter(card => card.figure === 'A');
-        expect(figure.length === 4).toBe(true);
-        expect(figure.filter(card => card.color === 'clubs').length === 1).toBe(true);
-        expect(figure.filter(card => card.color === 'spades').length === 1).toBe(true);
-        expect(figure.filter(card => card.color === 'hearts').length === 1).toBe(true);
-        expect(figure.filter(card => card.color === 'tiles').length === 1).toBe(true);
-    });
-
-    it("length should decrease after it return random card", function() {
-		var deck = new Deck();
-		expect(deck.cards.length === 52).toBe(true);
-		for(var i = 51; i >= 0; i--) {
-			var card = deck.getCard();
-			console.log(card.$element.prop('outerHTML'));
-			expect(deck.cards.length === 52).toBe(false);
-			expect(deck.cards.length === i).toBe(true);
-		}
-    });
-
-	it("should not contain card it already returned", function() {
-		var deck = new Deck();
-		var card = deck.getCard();
-		expect(deck.cards).not.toContain(card);
-		deck.cards.push(card);
-		expect(deck.cards).toContain(card);
+	beforeEach(function () {
+		deck = new Deck();
 	});
 
-});
+	it('should have 52 cards', function () {
+		expect(deck.cards.length).toEqual(52);
+	});
+
+	it('should have 13 clubs cards', function () {
+		var clubs = deck.cards.filter(card => card.color === 'clubs');
+		expect(clubs.length).toEqual(13);
+	});
+
+	it('should have 13 hearts cards', function () {
+		var hearts = deck.cards.filter(card => card.color === 'hearts');
+		expect(hearts.length).toEqual(13);
+	});
+
+	it('should have 13 tiles cards', function () {
+		var tiles = deck.cards.filter(card => card.color === 'tiles');
+		expect(tiles.length).toEqual(13);
+	});
+
+
+	it('should have 13 spades cards', function () {
+		var spades = deck.cards.filter(card => card.color === 'spades');
+		expect(spades.length).toEqual(13);
+	});
+
+	it('should have 13 spades cards', function () {
+		for (var i = 0; i < Deck.colors.length; i++) {
+			for (var k = 0; k < Deck.ranks.length; k++) {
+				expect(deck[Deck.colors[i] + '-' + Deck.ranks[k]]).not.toBeUndefined();
+			}
+		}
+	});
+
+})
+;
