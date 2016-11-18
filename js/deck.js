@@ -24,6 +24,11 @@ function Deck() {
 		return arr;
 	}();
 
+	this.getRandomCard = function () {
+		var index = Math.random() * this.cards.length;
+		return this.cards.splice(index,1);
+	};
+
 
 };
 

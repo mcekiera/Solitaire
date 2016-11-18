@@ -38,5 +38,14 @@ describe('Deck object, which represents deck of cards', function () {
 		}
 	});
 
+	it('should return random card, and remove it from collection', function () {
+		expect(deck.cards.length).toEqual(52);
+		for (var i = 52; i >=1; i -= 1) {
+			var card = deck.getRandomCard();
+			expect(deck.cards.length).toEqual(i - 1);
+			expect(deck.cards).not.toContain(card);
+		}
+	});
+
 })
 ;

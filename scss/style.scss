@@ -36,3 +36,36 @@ body {
   height: 100%;
   min-height: 100px;
 }
+
+.stash {
+  position: relative;
+}
+
+.card {
+  //position: relative;
+  width: 75px;
+  height: 100px;
+  display: block;
+  background-color: #ffffff;
+  border: 1px solid #000;
+  position: absolute;
+
+  &:before {
+    content: attr(id);
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  &.covered:after {
+    content: '';
+    background-color: #ff0000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
