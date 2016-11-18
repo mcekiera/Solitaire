@@ -1,7 +1,8 @@
 function Stack($element) {
 	"use strict";
-	this.$emement = $element;
+	this.$element = $element;
 	this.cards = [];
+	console.log(this.$element);
 
 	var filters = [];
 
@@ -11,6 +12,14 @@ function Stack($element) {
 
 	this.removeFilter = function (f) {
 		filters.remove(f);
+	};
+
+	this.addCard = function(card) {
+		this.cards.push(card);
+		console.log(card.$element)
+		this.$element
+			.append('<li>')
+			.append(card.$element);
 	};
 
 }

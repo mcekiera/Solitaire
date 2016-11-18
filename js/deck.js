@@ -26,7 +26,7 @@ function Deck() {
 
 	this.getRandomCard = function () {
 		var index = Math.random() * this.cards.length;
-		return this.cards.splice(index,1);
+		return this.cards.splice(index,1)[0];
 	};
 
 

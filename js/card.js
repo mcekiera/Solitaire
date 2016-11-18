@@ -3,6 +3,7 @@ function Card(color, rank) {
 	this.rank = rank;
 	this.id = this.color + '-' + this.rank;
 	this.$element = $('#' + this.id);
+	console.log(this.$element);
 }
 
 Card.prototype.isSameColor = function (card) {

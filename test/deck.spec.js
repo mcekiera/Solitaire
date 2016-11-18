@@ -42,6 +42,8 @@ describe('Deck object, which represents deck of cards', function () {
 		expect(deck.cards.length).toEqual(52);
 		for (var i = 52; i >=1; i -= 1) {
 			var card = deck.getRandomCard();
+			expect(card).not.toBeUndefined();
+			expect(card.$element).not.toBeUndefined();
 			expect(deck.cards.length).toEqual(i - 1);
 			expect(deck.cards).not.toContain(card);
 		}

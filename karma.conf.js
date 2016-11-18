@@ -23,7 +23,7 @@ module.exports = function(config) {
 
 
 		// list of files to exclude
-		exclude: [
+		exclude: [ 'js/board.js', 'js/solitaire.js'
 		],
 
 
