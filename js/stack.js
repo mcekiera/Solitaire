@@ -1,8 +1,8 @@
 function Stack($element) {
 	"use strict";
-	this.$element = $element;
+	this.$element = $element.find('ul');
 	this.cards = [];
-	console.log(this.$element);
+	console.log(this.$element.find('ul'));
 
 	var filters = [];
 
@@ -18,8 +18,8 @@ function Stack($element) {
 		this.cards.push(card);
 		console.log(card.$element)
 		this.$element
-			.append('<li>')
-			.append(card.$element);
+			.append($('<li>').append(card.$element));
+
 	};
 
 }

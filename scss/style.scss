@@ -8,6 +8,16 @@ body {
   min-height: 100vh;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: -10px;
+}
+
+li {
+  padding-top: 10px;
+}
+
 .board__top {
   min-height: 30vh;
 }
@@ -39,6 +49,10 @@ body {
 
 .stash {
   position: relative;
+
+  li {
+	position: absolute;
+  }
 }
 
 .card {
