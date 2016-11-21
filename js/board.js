@@ -25,7 +25,7 @@ function Board(deck) {
 			for (var n = pile; n > 0; n--) {
 				this.tableau[pile].addCard(deck.getRandomCard());
 			}
-			this.tableau[pile].cards[pile-1].$element.addClass('uncovered');
+			// this.tableau[pile].cards[pile-1].$element.addClass('uncovered').removeClass('covered');
 		}
 	}
 

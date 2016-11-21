@@ -9,10 +9,14 @@ body {
 ul {
   list-style-type: none;
   padding: 0;
-  margin-top: -10px; }
+  position: absolute;
+  top: 80px;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%; }
 
 li {
-  padding-top: 10px; }
+  margin-top: -80px; }
 
 .board__top {
   min-height: 30vh; }
@@ -47,8 +51,7 @@ li {
   height: 100px;
   display: block;
   background-color: #ff0000;
-  border: 1px solid #000;
-  position: absolute; }
+  border: 1px solid #000; }
   .card.uncovered:after {
     content: attr(id);
     position: absolute;

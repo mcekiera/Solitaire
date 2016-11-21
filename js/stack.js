@@ -16,9 +16,8 @@ function Stack($element) {
 
 	this.addCard = function(card) {
 		this.cards.push(card);
-		console.log(card.$element)
-		this.$element
-			.append($('<li>').append(card.$element));
+		console.log(card.$element);
+		this.$element.append(card.$element);
 
 	};
 
