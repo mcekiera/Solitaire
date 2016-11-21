@@ -1,23 +1,23 @@
 function Board(deck) {
 
-	this.stack = new Stack($('#js-stack'));
-	this.waste = new Stack($('#js-waste'));
+	this.stack = new Stack($('#js-stack'), deck);
+	this.waste = new Stack($('#js-waste'), deck);
 
 	this.fundation = {
-		spades: new Stack($('#js-foundation-spades')),
-		clubs: new Stack($('#js-foundation-clubs')),
-		tiles: new Stack($('#js-foundation-tiles')),
-		hearts: new Stack($('#js-foundation-hearts'))
+		spades: new Stack($('#js-foundation-spades'), deck),
+		clubs: new Stack($('#js-foundation-clubs'), deck),
+		tiles: new Stack($('#js-foundation-tiles'), deck),
+		hearts: new Stack($('#js-foundation-hearts'), deck)
 	};
 
 	this.tableau = {
-		1: new Stack($('#js-tableau-0')),
-		2: new Stack($('#js-tableau-1')),
-		3: new Stack($('#js-tableau-2')),
-		4: new Stack($('#js-tableau-3')),
-		5: new Stack($('#js-tableau-4')),
-		6: new Stack($('#js-tableau-5')),
-		7: new Stack($('#js-tableau-6'))
+		1: new Stack($('#js-tableau-0'), deck),
+		2: new Stack($('#js-tableau-1'), deck),
+		3: new Stack($('#js-tableau-2'), deck),
+		4: new Stack($('#js-tableau-3'), deck),
+		5: new Stack($('#js-tableau-4'), deck),
+		6: new Stack($('#js-tableau-5'), deck),
+		7: new Stack($('#js-tableau-6'), deck)
 	};
 
 	for (var pile in this.tableau) {
@@ -25,7 +25,7 @@ function Board(deck) {
 			for (var n = pile; n > 0; n--) {
 				this.tableau[pile].addCard(deck.getRandomCard());
 			}
-			// this.tableau[pile].cards[pile-1].$element.addClass('uncovered').removeClass('covered');
+			this.tableau[pile].cards[pile-1].$element.addClass('uncovered').removeClass('covered');
 		}
 	}
 

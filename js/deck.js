@@ -16,6 +16,7 @@ function Deck() {
 		for (var i = 0; i < Deck.colors.length; i++) {
 			for (var k = 0; k < Deck.ranks.length; k++) {
 				var card = new Card(Deck.colors[i], Deck.ranks[k]);
+				console.log(card.$element.obj);
 				that[card.id] = card;
 				arr.push(card);
 			}

@@ -5,9 +5,10 @@ var solitaire = function() {
 	var board = new Board(deck);
 
 	var makeDraggable = function() {
-		$('li.covered').draggable({
+		$('li.uncovered').draggable({
 			oldZ: 0,
-			stack: ".covered",
+			stack: ".card",
+			zIndex: 99,
 
 			revert : function(event, ui) {
 				$(this).data("uiDraggable").originalPosition = {
@@ -20,7 +21,7 @@ var solitaire = function() {
 
 			start: function() {
 				console.log($(this));
-				$('.covered.hold').each(function() {
+				$('.uncovered.hold').each(function() {
 					console.log($(this));
 					$(this).trigger('dragstart');
 				});
@@ -29,37 +30,46 @@ var solitaire = function() {
 			drag: function() {
 				var maintop = $(this).css('top');
 				var mainleft = $(this).css('left');
-				console.log($(this));
+				var z = $(this).css('z-index');
 
-				$('.covered.hold').each(function() {
+				$('.uncovered.hold').each(function() {
+					z += 1;
 					$(this).trigger('drag');
 					$(this).addClass('ui-draggable-dragging');
 					$(this).css('left', mainleft);
+					$(this).css('top', maintop);
+					$(this).css('z-index',z);
 				});
 
-				$('.covered.hold:first').css('top', maintop);
+				//$('.uncovered.hold:first').css('top', maintop);
 			},
 
 			stop: function() {
 				var maintop = $(this).css('top');
 				var mainleft = $(this).css('left');
 
-				$('.covered.hold').each(function() {
+
+				$('.uncovered.hold').each(function() {
 					$(this).trigger('dragstop');
 					$(this).removeClass('ui-draggable-dragging');
 					$(this).css('left', mainleft);
 				});
 
-				$('.covered.hold:first').css('top', maintop);
+				$('.uncovered.hold:first').css('top', maintop);
 			}
 		});
 	};
 	
-	$('li.covered').on('mousedown mouseup', function () {
-		$(this).toggleClass('prime');
-		$(this).nextAll().toggleClass('hold');
-
+	$('li.uncovered').on('mousedown', function () {
+		$(this).addClass('prime');
+		$(this).nextAll().addClass('hold');
 	});
+
+	$('li.uncovered').on('mouseup', function () {
+		$(this).removeClass('prime');
+		$('.hold').removeClass('hold');
+	});
+
 
 	// $('li.covered.prime').on('dragstart', function() {
 	// 	console.log($(this));
@@ -97,20 +107,28 @@ var solitaire = function() {
 	// });
 
 
-	$('.deck .card, .deck ul').droppable({
+	$('.deck .card').droppable({
 		drop: function (event, ui) {
 			var target = $(event.target).parent();
 			var $hold = $(ui.draggable).nextAll();
 			$(ui.draggable).appendTo(target);
 			$hold.appendTo(target).css('left','').css('top','').css('position','relative');
 			ui.draggable.css('left','').css('top','').css('position','relative');
-			var base = ui.draggable.css('z-index');
-			$hold.each(function () {
-				base += 1;
-				$(this).css('z-index', base);
-			});
+
+			alignCards(ui.draggable, $hold);
 		}
 	});
+
+	var alignCards = function(base, rest) {
+		var z = base.css('z-index');
+		var h = base.css('top');
+		var w = base.css('left');
+		rest.each(function () {
+			z += 1;
+			h += 10;
+			$(this).css('z-index', z).css('left', w).css('top', h);
+		});
+	};
 
 	$('#js-stack').click(function () {
 		var card = board.stack.cards.pop();

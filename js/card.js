@@ -3,7 +3,6 @@ function Card(color, rank) {
 	this.rank = rank;
 	this.id = this.color + '-' + this.rank;
 	this.$element = $('#' + this.id);
-	console.log(this.$element);
 }
 
 Card.prototype.isSameColor = function (card) {
@@ -24,5 +23,12 @@ Card.prototype.isSameColorGroup = function (card) {
 	} else {
 		return card.color === 'tiles' || card.color === 'hearts';
 	}
+};
 
+Card.isAce = function (card) {
+	return card.rank === 'A';
+};
+
+Card.isKing = function (card) {
+	return card.rank === 'K';
 };

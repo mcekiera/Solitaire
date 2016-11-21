@@ -3,7 +3,7 @@ describe('Object, representing a single card', function () {
 
 	beforeEach(function () {
 		card = new Card('spades','A');
-	})
+	});
 
 	it('should return true if compared with other card of same color, and false if it is not', function() {
 		"use strict";
@@ -43,4 +43,18 @@ describe('Object, representing a single card', function () {
 		var other3 = new Card('hearts','A');
 		expect(other2.isSameColorGroup(other3)).toBe(true);
 	});
+	it('should return true if given card is ace', function () {
+		var other1 = new Card('clubs', 'A');
+		expect(Card.isAce(other1)).toBe(true);
+		var other2 = new Card('tiles', 'K');
+		expect(Card.isAce(other2)).toBe(false);
+	});
+
+	it('should return true if given card is king', function () {
+		var other1 = new Card('clubs', 'K');
+		expect(Card.isKing(other1)).toBe(true);
+		var other2 = new Card('tiles', 'A');
+		expect(Card.isKing(other2)).toBe(false);
+	});
+
 })

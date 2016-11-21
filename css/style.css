@@ -1,5 +1,4 @@
 * {
-  border: 1px solid #fff;
   box-sizing: border-box; }
 
 body {
@@ -44,14 +43,17 @@ li {
 .stash {
   position: relative; }
   .stash li {
-    position: absolute; }
+    position: absolute;
+    top: 0;
+    left: 0; }
 
 .card {
   width: 75px;
   height: 100px;
   display: block;
   background-color: #ff0000;
-  border: 1px solid #000; }
+  border: 1px solid #000;
+  position: relative; }
   .card.uncovered:after {
     content: attr(id);
     position: absolute;
