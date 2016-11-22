@@ -1,95 +1,343 @@
-@charset "UTF-8";
-/* ==== GLOBAL ==== */
-* {
-  border: 1px solid #fff;
-  box-sizing: border-box; }
+#clubs-A.uncovered:after {
+  background-image: url("../img/clubs/clubs-A.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
 
-body {
-  background-color: #006400;
-  min-height: 100vh;
-  padding: 10px; }
+#clubs-1.uncovered:after {
+  background-image: url("../img/clubs/clubs-1.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
 
-/* ==== CARDS ==== */
+#clubs-2.uncovered:after {
+  background-image: url("../img/clubs/clubs-2.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-3.uncovered:after {
+  background-image: url("../img/clubs/clubs-3.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-4.uncovered:after {
+  background-image: url("../img/clubs/clubs-4.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-5.uncovered:after {
+  background-image: url("../img/clubs/clubs-5.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-6.uncovered:after {
+  background-image: url("../img/clubs/clubs-6.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-7.uncovered:after {
+  background-image: url("../img/clubs/clubs-7.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-8.uncovered:after {
+  background-image: url("../img/clubs/clubs-8.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-9.uncovered:after {
+  background-image: url("../img/clubs/clubs-9.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-10.uncovered:after {
+  background-image: url("../img/clubs/clubs-10.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-J.uncovered:after {
+  background-image: url("../img/clubs/clubs-J.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-Q.uncovered:after {
+  background-image: url("../img/clubs/clubs-Q.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#clubs-K.uncovered:after {
+  background-image: url("../img/clubs/clubs-K.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-A.uncovered:after {
+  background-image: url("../img/spades/spades-A.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-1.uncovered:after {
+  background-image: url("../img/spades/spades-1.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-2.uncovered:after {
+  background-image: url("../img/spades/spades-2.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-3.uncovered:after {
+  background-image: url("../img/spades/spades-3.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-4.uncovered:after {
+  background-image: url("../img/spades/spades-4.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-5.uncovered:after {
+  background-image: url("../img/spades/spades-5.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-6.uncovered:after {
+  background-image: url("../img/spades/spades-6.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-7.uncovered:after {
+  background-image: url("../img/spades/spades-7.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-8.uncovered:after {
+  background-image: url("../img/spades/spades-8.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-9.uncovered:after {
+  background-image: url("../img/spades/spades-9.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-10.uncovered:after {
+  background-image: url("../img/spades/spades-10.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-J.uncovered:after {
+  background-image: url("../img/spades/spades-J.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-Q.uncovered:after {
+  background-image: url("../img/spades/spades-Q.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#spades-K.uncovered:after {
+  background-image: url("../img/spades/spades-K.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-A.uncovered:after {
+  background-image: url("../img/hearts/hearts-A.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-1.uncovered:after {
+  background-image: url("../img/hearts/hearts-1.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-2.uncovered:after {
+  background-image: url("../img/hearts/hearts-2.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-3.uncovered:after {
+  background-image: url("../img/hearts/hearts-3.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-4.uncovered:after {
+  background-image: url("../img/hearts/hearts-4.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-5.uncovered:after {
+  background-image: url("../img/hearts/hearts-5.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-6.uncovered:after {
+  background-image: url("../img/hearts/hearts-6.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-7.uncovered:after {
+  background-image: url("../img/hearts/hearts-7.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-8.uncovered:after {
+  background-image: url("../img/hearts/hearts-8.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-9.uncovered:after {
+  background-image: url("../img/hearts/hearts-9.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-10.uncovered:after {
+  background-image: url("../img/hearts/hearts-10.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-J.uncovered:after {
+  background-image: url("../img/hearts/hearts-J.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-Q.uncovered:after {
+  background-image: url("../img/hearts/hearts-Q.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#hearts-K.uncovered:after {
+  background-image: url("../img/hearts/hearts-K.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-A.uncovered:after {
+  background-image: url("../img/tiles/tiles-A.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-1.uncovered:after {
+  background-image: url("../img/tiles/tiles-1.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-2.uncovered:after {
+  background-image: url("../img/tiles/tiles-2.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-3.uncovered:after {
+  background-image: url("../img/tiles/tiles-3.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-4.uncovered:after {
+  background-image: url("../img/tiles/tiles-4.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-5.uncovered:after {
+  background-image: url("../img/tiles/tiles-5.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-6.uncovered:after {
+  background-image: url("../img/tiles/tiles-6.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-7.uncovered:after {
+  background-image: url("../img/tiles/tiles-7.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-8.uncovered:after {
+  background-image: url("../img/tiles/tiles-8.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-9.uncovered:after {
+  background-image: url("../img/tiles/tiles-9.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-10.uncovered:after {
+  background-image: url("../img/tiles/tiles-10.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-J.uncovered:after {
+  background-image: url("../img/tiles/tiles-J.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-Q.uncovered:after {
+  background-image: url("../img/tiles/tiles-Q.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
+#tiles-K.uncovered:after {
+  background-image: url("../img/tiles/tiles-K.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: transparent; }
+
 .card {
-  background-color: #fff;
-  border: 1px solid #000;
-  display: inline-block;
-  font-size: 12px;
-  left: 0;
-  min-height: 100px;
-  min-width: 75px;
-  max-height: 100px;
-  max-width: 75px;
-  position: absolute;
-  top: 0;
-  overflow: visible; }
-  .card::before, .card::after {
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: auto;
-    content: attr(data-figure);
-    padding-left: 4%; }
-  .card__fig, .card__interior {
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: auto; }
-  .card__fig::before, .card__fig::after {
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: auto;
-    color: inherit;
-    content: "";
-    padding-top: 17%;
-    padding-left: 2%; }
-  .card__interior::before {
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: auto;
-    font-size: 36px;
-    padding-top: 30%;
-    text-align: center; }
-  .card--clubs .card__fig::before,
-  .card--clubs .card__fig::after,
-  .card--clubs .card__interior::before {
-    content: "♣"; }
-  .card--spades .card__fig::before,
-  .card--spades .card__fig::after,
-  .card--spades .card__interior::before {
-    content: "♠"; }
-  .card--tiles .card__fig::before,
-  .card--tiles .card__fig::after,
-  .card--tiles .card__interior::before {
-    content: "♦"; }
-  .card--hearts .card__fig::before,
-  .card--hearts .card__fig::after,
-  .card--hearts .card__interior::before {
-    content: "♥"; }
-  .card--spades, .card--clubs {
-    color: #000000; }
-  .card--tiles, .card--hearts {
-    color: #FF0000; }
-  .card__back {
-    left: 0;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: auto;
-    background: repeating-linear-gradient(45deg, white, white 2px, red 2px, red 4px);
-    z-index: 2; }
-    .flip .card__back {
-      visibility: hidden; }
+  background-image: url("../img/back.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: #fff; }
 
 /*# sourceMappingURL=cards.css.map */

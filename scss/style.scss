@@ -1,3 +1,6 @@
+$cardW: 115px;
+$cardH: 150px;
+
 * {
   //border: 1px solid #fff;
   box-sizing: border-box;
@@ -12,14 +15,14 @@ ul {
   list-style-type: none;
   padding: 0;
   position: absolute;
-  top: 80px;
+  top: $cardW;
   left: 0;
   min-width: 100%;
   min-height: 100%;
 }
 
 li {
-  margin-top: -80px;
+  margin-top: -$cardW;
 }
 
 .board__top {
@@ -42,13 +45,22 @@ li {
   margin-left: 80px;
 }
 
+.box {
+  min-height: $cardH;
+  position: relative;
+}
+
 .deck {
-  background-color: #000;
+  border: 1px solid #fff;
+  //background-color: #000;
   display: inline-block;
   float: left;
   position: relative;
   height: 100%;
-  min-height: 100px;
+  min-height: $cardH;
+  width: $cardW;
+  background-color: #339933;
+  margin: 5px;
 }
 
 .stash {
@@ -70,20 +82,28 @@ li {
 }
 
 .card {
-  width: 75px;
-  height: 100px;
+  width: $cardW;
+  height: $cardH;
   display: block;
   background-color: #ff0000;
-  border: 1px solid #000;
   position: relative;
+  border: 1px solid #000;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
 
   &.uncovered:after {
-    content: attr(id);
+    content: '';
+	//border: 1px solid #000;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
     position: absolute;
     top: 0;
     left: 0;
     min-width: 100%;
     min-height: 100%;
 	background: #fff;
+	padding: 10px 0;
   }
 }

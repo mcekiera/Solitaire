@@ -16,18 +16,16 @@ var solitaire = function() {
 	};
 
 	var updateOrder = function (pile) {
-		var base = parseInt(pile.children().children().first().css('z-index'),10);
-		for(var i = 0; i < pile.children().children().length; i++) {
-			console.log(pile.children().children().eq(i));
-			pile.children().children().eq(i).css('z-index',base + i);
+		var listItems = pile.children().children();
+		var base = parseInt(listItems.first().css('z-index'),10);
+		for(var i = 0; i < listItems.length; i++) {
+			listItems.eq(i).css('z-index',base + i);
 		}
 	};
 
 	var makeDraggable = function() {
 		$('li.uncovered').draggable({
-			oldZ: 0,
 			stack: ".card",
-			// zIndex: 9999,
 
 			revert : function(event, ui) {
 				$(this).data("uiDraggable").originalPosition = {
@@ -52,15 +50,12 @@ var solitaire = function() {
 			drag: function() {
 				var maintop = $(this).css('top');
 				var mainleft = $(this).css('left');
-				// var z = parseInt($(this).css('z-index'));
 
 				$('.uncovered.hold').each(function() {
-					// z += 1;
 					$(this).trigger('drag');
 					$(this).addClass('ui-draggable-dragging');
 					$(this).css('left', mainleft);
 					$(this).css('top', maintop);
-					// $(this).css('z-index',z);
 				});
 			},
 
@@ -119,11 +114,10 @@ var solitaire = function() {
 		var $target = $(event.target);
 		var $hold = $(ui.draggable).nextAll();
 		var $parent = $(ui.draggable).parent();
-		$(ui.draggable).appendTo($target);
+		$(ui.draggable).appendTo($target).css('left','').css('top','');;
 		$hold.appendTo($target).css('left','').css('top','');
-		$(ui.draggable).css('left','').css('top','');
 		updatePile($parent);
-		// updateOrder($target.parent());
+		updateOrder($target.parent());
 	}
 
 	$('#js-stack').click(function () {
@@ -140,7 +134,6 @@ var solitaire = function() {
 
 
 	makeDraggable();
-
 };
 
 solitaire();

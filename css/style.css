@@ -9,13 +9,13 @@ ul {
   list-style-type: none;
   padding: 0;
   position: absolute;
-  top: 80px;
+  top: 115px;
   left: 0;
   min-width: 100%;
   min-height: 100%; }
 
 li {
-  margin-top: -80px; }
+  margin-top: -115px; }
 
 .board__top {
   min-height: 30vh; }
@@ -32,13 +32,20 @@ li {
 .col-deck-offset-1 {
   margin-left: 80px; }
 
+.box {
+  min-height: 150px;
+  position: relative; }
+
 .deck {
-  background-color: #000;
+  border: 1px solid #fff;
   display: inline-block;
   float: left;
   position: relative;
   height: 100%;
-  min-height: 100px; }
+  min-height: 150px;
+  width: 115px;
+  background-color: #339933;
+  margin: 5px; }
 
 .stash {
   position: relative; }
@@ -53,19 +60,26 @@ li {
     left: 0; }
 
 .card {
-  width: 75px;
-  height: 100px;
+  width: 115px;
+  height: 150px;
   display: block;
   background-color: #ff0000;
+  position: relative;
   border: 1px solid #000;
-  position: relative; }
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px; }
   .card.uncovered:after {
-    content: attr(id);
+    content: '';
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     position: absolute;
     top: 0;
     left: 0;
     min-width: 100%;
     min-height: 100%;
-    background: #fff; }
+    background: #fff;
+    padding: 10px; }
 
 /*# sourceMappingURL=style.css.map */
