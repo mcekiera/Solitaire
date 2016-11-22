@@ -1,7 +1,15 @@
 function Board(deck) {
 
-	var cardToFundation = function (that, card) {
-		return (typeof that === 'undefined' && Card.isAce(card)) || that.isRankBelow(card);
+	var aceFirst = function (that, card) {
+		return typeof that === 'undefined' && Card.isAce(card);
+	};
+
+	var colorOrder = function (that, card) {
+		try {
+			return that.isRankBelow(card) && that.isSameColor(card);
+		} catch (err) {
+			return false;
+		}
 	};
 
 	this.stack = new Stack($('#js-stack'), deck);
@@ -14,10 +22,8 @@ function Board(deck) {
 		hearts: new Stack($('#js-foundation-hearts'), deck)
 	};
 
-	this.fundation.spades.addFilter(cardToFundation);
-	this.fundation.clubs.addFilter(cardToFundation);
-	this.fundation.tiles.addFilter(cardToFundation);
-	this.fundation.hearts.addFilter(cardToFundation);
+	this.fundation.spades.addFilter(aceFirst);
+	this.fundation.spades.addFilter(colorOrder);
 
 
 	this.tableau = {

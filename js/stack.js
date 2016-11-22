@@ -1,7 +1,7 @@
 function Stack($element, $deck) {
 	"use strict";
 	var that = this;
-	this.$element = $element.find('ul');
+	this.$element = $element;
 	this.cards = [];
 
 
@@ -16,17 +16,21 @@ function Stack($element, $deck) {
 	};
 
 	this.test = function (el) {
+
 		var lastCard = $deck[that.$element.last().attr('id')];
 		var card = $deck[el.attr('id')];
 		for (var i = 0; i < filters.length; i++) {
-			filters[i].apply(lastCard, card);
+			if(filters[i].call(lastCard, lastCard, card)) {
+				return true;
+			}
 		}
+		return false;
 	};
 
 	this.addCard = function(card) {
 		this.cards.push(card);
-		console.log(card.$element);
-		this.$element.append(card.$element);
+
+		this.$element.find('ul').append(card.$element);
 	};
 
 }

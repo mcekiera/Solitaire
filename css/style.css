@@ -42,6 +42,10 @@ li {
 
 .stash {
   position: relative; }
+  .stash ul {
+    top: 80px; }
+    .stash ul li {
+      position: absolute; }
   .stash li {
     position: absolute;
     top: 0;

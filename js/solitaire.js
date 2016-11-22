@@ -4,10 +4,20 @@ var solitaire = function() {
 	var deck = new Deck();
 	var board = new Board(deck);
 
+	var updatePile = function(pile) {
+		console.log('updatePile: pile, uncover.length, last');
+		console.log(pile);
+		console.log(pile.find('ul').find('uncovered').length);
+		console.log(pile.find('ul').last());
+		if(pile.children('ul').children('uncovered').length === 0) {
+			pile.children().children().last().removeClass('covered').addClass('uncovered');
+		}
+	};
+
 	var makeDraggable = function() {
 		$('li.uncovered').draggable({
 			oldZ: 0,
-			stack: ".card",
+			stack: ".card, .deck",
 			zIndex: 99,
 
 			revert : function(event, ui) {
@@ -25,9 +35,7 @@ var solitaire = function() {
 			},
 
 			start: function() {
-				console.log($(this));
 				$('.uncovered.hold').each(function() {
-					console.log($(this));
 					$(this).trigger('dragstart');
 				});
 			},
@@ -55,10 +63,6 @@ var solitaire = function() {
 				$('.uncovered.hold').each(function() {
 					$(this).trigger('dragstop');
 					$(this).removeClass('ui-draggable-dragging');
-					// // $(this).css('left', mainleft);
-					// $(this).removeClass('ui-draggable-dragging');
-					// $(this).animate({top: "0", left: "0"}, 500);
-					// $(this).removeClass('hold');
 				});
 
 				$('.uncovered.hold:first').css('top', maintop);
@@ -75,30 +79,32 @@ var solitaire = function() {
 		$(this).removeClass('prime');
 	});
 
-	$('.deck ul').droppable({
+	$('#js-foundation-spades').droppable({
 		drop: function (event, ui) {
-			console.log(event);
-			console.log(ui);
-			var target = $(event.target);
-			var $hold = $(ui.draggable).nextAll();
-			$(ui.draggable).appendTo(target);
-			$hold.appendTo(target).css('left','').css('top','').css('position','relative');
-			ui.draggable.css('left','').css('top','').css('position','relative');
 
-			alignCards(ui.draggable, $hold);
+			acceptedDrop(event, ui);
+		},
+		accept: function (val) {
+			console.log(board.fundation.spades.$element);
+			return board.fundation.spades.test(val);
 		}
 	});
 
-	var alignCards = function(base, rest) {
-		var z = base.css('z-index');
-		var h = base.css('top');
-		var w = base.css('left');
-		rest.each(function () {
-			z += 1;
-			h += 10;
-			$(this).css('z-index', z).css('left', w).css('top', h);
-		});
-	};
+	// $('.deck').droppable({
+	// 	drop: function (event, ui) {
+	// 		acceptedDrop(event, ui)
+	// 	}
+	// });
+
+	var acceptedDrop = function (event, ui) {
+		var target = $(event.target).find('ul');
+		var $hold = $(ui.draggable).nextAll();
+		var $parent = $(ui.draggable).parent().parent();
+		$(ui.draggable).appendTo(target);
+		$hold.appendTo(target).css('left','').css('top','').css('position','relative');
+		$(ui.draggable).removeAttr('style');
+		updatePile($parent);
+	}
 
 	$('#js-stack').click(function () {
 		var card = board.stack.cards.pop();
@@ -109,6 +115,8 @@ var solitaire = function() {
 		}
 		makeDraggable();
 	});
+
+
 
 	makeDraggable();
 
