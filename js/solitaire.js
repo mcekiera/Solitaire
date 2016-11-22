@@ -89,14 +89,16 @@ var solitaire = function() {
 		});
 	};
 	
+	// DROPPABLE //
 
-
+	/**
+	 * Function restricting which card could be added to given fundation stack;
+	 */
 	$('#js-foundation-spades ul, #js-foundation-clubs ul, #js-foundation-hearts ul, #js-foundation-tiles ul').droppable({
 		drop: function (event, ui) {
 			acceptedDrop(event, ui);
 		},
 		accept: function (val) {
-			console.log('fundation test' + board.fundation[$(this).parent().attr('id')].toString());
 			return board.fundation[$(this).parent().attr('id')].test(val);
 		}
 	});
@@ -104,6 +106,11 @@ var solitaire = function() {
 	$('.tableau ul').droppable({
 		drop: function (event, ui) {
 			acceptedDrop(event, ui);
+		},
+		accept: function (val) {
+			var num = /\d/.exec($(this).parent().attr('id'));
+			console.log(board.tableau[num].test(val));
+			return board.tableau[num].test(val);
 		}
 	});
 
