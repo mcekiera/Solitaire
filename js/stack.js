@@ -17,7 +17,7 @@ function Stack($element, $deck) {
 
 	this.test = function (el) {
 
-		var lastCard = $deck[that.$element.last().attr('id')];
+		var lastCard = $deck[that.$element.children().children().last().attr('id')];
 		var card = $deck[el.attr('id')];
 		for (var i = 0; i < filters.length; i++) {
 			if(filters[i].call(lastCard, lastCard, card)) {

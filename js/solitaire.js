@@ -9,10 +9,10 @@ var solitaire = function() {
 	 * @param pile a stack object, from which card object was removed
 	 */
 	var updatePile = function(pile) {
-		// if(pile.children('uncovered').length === 0) {
-		// 	pile.children().last().removeClass('covered').addClass('uncovered');
-		// 	makeDraggable();
-		// }
+		if(pile.children('uncovered').length === 0) {
+			pile.children().last().removeClass('covered').addClass('uncovered');
+			makeDraggable();
+		}
 	};
 
 	var updateOrder = function (pile) {
@@ -25,8 +25,8 @@ var solitaire = function() {
 	var makeDraggable = function() {
 		$('li.uncovered').draggable({
 			oldZ: 0,
-			stack: ".card, .deck",
-			zIndex: 99,
+			stack: ".card",
+			// zIndex: 9999,
 
 			revert : function(event, ui) {
 				$(this).data("uiDraggable").originalPosition = {
@@ -78,24 +78,26 @@ var solitaire = function() {
 				$('.hold').removeClass('hold');
 			}
 		});
+
+		$('li.uncovered').on('mousedown', function () {
+			$(this).addClass('prime');
+			$(this).nextAll().addClass('hold');
+		});
+
+		$('li.uncovered').on('mouseup', function () {
+			$(this).removeClass('prime');
+		});
 	};
 	
-	$('li.uncovered').on('mousedown', function () {
-		$(this).addClass('prime');
-		$(this).nextAll().addClass('hold');
-	});
 
-	// $('li.uncovered').on('mouseup', function () {
-	// 	$(this).removeClass('prime');
-	// });
 
-	$('#js-foundation-spades ul').droppable({
+	$('#js-foundation-spades ul, #js-foundation-clubs ul, #js-foundation-hearts ul, #js-foundation-tiles ul').droppable({
 		drop: function (event, ui) {
 			acceptedDrop(event, ui);
 		},
 		accept: function (val) {
-			console.log(board.fundation.spades.$element);
-			return board.fundation.spades.test(val);
+			console.log('fundation test' + board.fundation[$(this).parent().attr('id')].toString());
+			return board.fundation[$(this).parent().attr('id')].test(val);
 		}
 	});
 
@@ -110,8 +112,8 @@ var solitaire = function() {
 		var $hold = $(ui.draggable).nextAll();
 		var $parent = $(ui.draggable).parent();
 		$(ui.draggable).appendTo($target);
-		$hold.appendTo($target).css('left','').css('top','').css('position','relative');
-		$(ui.draggable).css('left','').css('top','').css('position','relative');
+		$hold.appendTo($target).css('left','').css('top','');
+		$(ui.draggable).css('left','').css('top','');
 		updatePile($parent);
 		updateOrder($target.parent());
 	}
