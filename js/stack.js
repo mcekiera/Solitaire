@@ -29,7 +29,6 @@ function Stack($element, $deck) {
 
 	this.addCard = function(card) {
 		this.cards.push(card);
-
 		this.$element.find('ul').append(card.$element);
 	};
 

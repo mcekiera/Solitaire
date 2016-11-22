@@ -16,9 +16,10 @@ var solitaire = function() {
 	};
 
 	var updateOrder = function (pile) {
-		var base = parseInt(pile.children().first().css('z-index'),10);
-		for(var i = 0; i < pile.children().length; i++) {
-			pile.children().eq(i).css('z-index',base + i);
+		var base = parseInt(pile.children().children().first().css('z-index'),10);
+		for(var i = 0; i < pile.children().children().length; i++) {
+			console.log(pile.children().children().eq(i));
+			pile.children().children().eq(i).css('z-index',base + i);
 		}
 	};
 
@@ -122,7 +123,7 @@ var solitaire = function() {
 		$hold.appendTo($target).css('left','').css('top','');
 		$(ui.draggable).css('left','').css('top','');
 		updatePile($parent);
-		updateOrder($target.parent());
+		// updateOrder($target.parent());
 	}
 
 	$('#js-stack').click(function () {
@@ -133,6 +134,7 @@ var solitaire = function() {
 			board.waste.addCard(card);
 		}
 		makeDraggable();
+		updateOrder($('#js-waste'));
 	});
 
 

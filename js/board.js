@@ -4,7 +4,7 @@ function Board(deck) {
 		return card.$element.nextAll().length === 0 && typeof that === 'undefined' && Card.isAce(card);
 	};
 
-	var isInColorOrder = function (that, card) {
+	var isInSameColorAndAscendingOrder = function (that, card) {
 		try {
 			return card.$element.nextAll().length === 0 && that.isRankBelow(card) && that.isSameColor(card);
 		} catch (err) {
@@ -12,9 +12,9 @@ function Board(deck) {
 		}
 	};
 
-	var isInOtherColorGroup = function (that, card) {
+	var isInOtherColorAndDescendingOrder = function (that, card) {
 		try {
-			return !that.isSameColorGroup(card);
+			return !that.isSameColorGroup(card) && that.isRankOver(card);
 		} catch (err) {
 			return false;
 		}
@@ -22,7 +22,8 @@ function Board(deck) {
 
 	var isKing = function (that, card) {
 		return typeof that === 'undefined' && Card.isKing(card);
-	}
+	};
+
 
 	this.stack = new Stack($('#js-stack'), deck);
 	this.waste = new Stack($('#js-waste'), deck);
@@ -35,13 +36,13 @@ function Board(deck) {
 	};
 
 	this.fundation["js-foundation-spades"].addFilter(isAce);
-	this.fundation["js-foundation-spades"].addFilter(isInColorOrder);
+	this.fundation["js-foundation-spades"].addFilter(isInSameColorAndAscendingOrder);
 	this.fundation["js-foundation-clubs"].addFilter(isAce);
-	this.fundation["js-foundation-clubs"].addFilter(isInColorOrder);
+	this.fundation["js-foundation-clubs"].addFilter(isInSameColorAndAscendingOrder);
 	this.fundation["js-foundation-tiles"].addFilter(isAce);
-	this.fundation["js-foundation-tiles"].addFilter(isInColorOrder);
+	this.fundation["js-foundation-tiles"].addFilter(isInSameColorAndAscendingOrder);
 	this.fundation["js-foundation-hearts"].addFilter(isAce);
-	this.fundation["js-foundation-hearts"].addFilter(isInColorOrder);
+	this.fundation["js-foundation-hearts"].addFilter(isInSameColorAndAscendingOrder);
 
 
 
@@ -62,7 +63,7 @@ function Board(deck) {
 				this.tableau[pile].addCard(deck.getRandomCard());
 			}
 			this.tableau[pile].cards[pile].$element.addClass('uncovered').removeClass('covered');
-			this.tableau[pile].addFilter(isInOtherColorGroup);
+			this.tableau[pile].addFilter(isInOtherColorAndDescendingOrder);
 			this.tableau[pile].addFilter(isKing);
 		}
 
