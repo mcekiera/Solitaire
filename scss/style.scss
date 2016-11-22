@@ -55,8 +55,9 @@ li {
   position: relative;
 
   ul {
-	top: 80px;
+	top: 0px;
 	li {
+	  margin-top: 0px;
 	  position: absolute;
 	}
   }
