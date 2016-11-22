@@ -1,5 +1,9 @@
 function Board(deck) {
 
+	var cardToFundation = function (that, card) {
+		return (typeof that === 'undefined' && Card.isAce(card)) || that.isRankBelow(card);
+	};
+
 	this.stack = new Stack($('#js-stack'), deck);
 	this.waste = new Stack($('#js-waste'), deck);
 
@@ -9,6 +13,12 @@ function Board(deck) {
 		tiles: new Stack($('#js-foundation-tiles'), deck),
 		hearts: new Stack($('#js-foundation-hearts'), deck)
 	};
+
+	this.fundation.spades.addFilter(cardToFundation);
+	this.fundation.clubs.addFilter(cardToFundation);
+	this.fundation.tiles.addFilter(cardToFundation);
+	this.fundation.hearts.addFilter(cardToFundation);
+
 
 	this.tableau = {
 		1: new Stack($('#js-tableau-0'), deck),
@@ -32,5 +42,7 @@ function Board(deck) {
 	for (var c = deck.cards.length; c > 0; c--) {
 		this.stack.addCard(deck.getRandomCard());
 	}
+
+
 
 }

@@ -16,7 +16,12 @@ var solitaire = function() {
 					left : 0,
 					zIndex : $(this).next().css('z-index') - 1
 				};
-				return !event;
+				$('.uncovered.hold').each(function() {
+					$(this).removeClass('ui-draggable-dragging');
+					$(this).animate({top: "0", left: "0"}, 500);
+					$(this).removeClass('hold');
+				});
+				return 'true';
 			},
 
 			start: function() {
@@ -40,8 +45,6 @@ var solitaire = function() {
 					$(this).css('top', maintop);
 					$(this).css('z-index',z);
 				});
-
-				//$('.uncovered.hold:first').css('top', maintop);
 			},
 
 			stop: function() {
@@ -52,7 +55,10 @@ var solitaire = function() {
 				$('.uncovered.hold').each(function() {
 					$(this).trigger('dragstop');
 					$(this).removeClass('ui-draggable-dragging');
-					$(this).css('left', mainleft);
+					// // $(this).css('left', mainleft);
+					// $(this).removeClass('ui-draggable-dragging');
+					// $(this).animate({top: "0", left: "0"}, 500);
+					// $(this).removeClass('hold');
 				});
 
 				$('.uncovered.hold:first').css('top', maintop);
@@ -67,49 +73,13 @@ var solitaire = function() {
 
 	$('li.uncovered').on('mouseup', function () {
 		$(this).removeClass('prime');
-		$('.hold').removeClass('hold');
 	});
 
-
-	// $('li.covered.prime').on('dragstart', function() {
-	// 	console.log($(this));
-	// 	$('.covered.hold').each(function() {
-	// 		console.log($(this));
-	// 		$(this).trigger('dragstart');
-	// 	});
-	// });
-
-	// $('li.covered.prime').on('drag', function() {
-	// 	var maintop = $(this).css('top');
-	// 	var mainleft = $(this).css('left');
-	// 	console.log($(this));
-	//
-	// 	$('.covered.hold').each(function() {
-	// 		$(this).trigger('drag');
-	// 		$(this).addClass('ui-draggable-dragging');
-	// 		$(this).css('margin-left', mainleft);
-	// 	});
-	//
-	// 	$('.covered.hold:first').css('margin-top', maintop);
-	// });
-	//
-	// $('li.covered.prime').on('dragstop', function() {
-	// 	var maintop = $(this).css('top');
-	// 	var mainleft = $(this).css('left');
-	//
-	// 	$('.covered.hold').each(function() {
-	// 		$(this).trigger('dragstop');
-	// 		$(this).removeClass('ui-draggable-dragging');
-	// 		$(this).css('margin-left', mainleft);
-	// 	});
-	//
-	// 	$('.covered.hold:first').css('margin-top', maintop);
-	// });
-
-
-	$('.deck .card').droppable({
+	$('.deck ul').droppable({
 		drop: function (event, ui) {
-			var target = $(event.target).parent();
+			console.log(event);
+			console.log(ui);
+			var target = $(event.target);
 			var $hold = $(ui.draggable).nextAll();
 			$(ui.draggable).appendTo(target);
 			$hold.appendTo(target).css('left','').css('top','').css('position','relative');
