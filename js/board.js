@@ -1,28 +1,16 @@
 function Board(deck) {
 
 	var isAce = function (that, card) {
-		return typeof that === 'undefined' && Card.isAce(card);
+		return card.$element.nextAll().length === 0 && typeof that === 'undefined' && Card.isAce(card);
 	};
 
 	var isInColorOrder = function (that, card) {
 		try {
-			return that.isRankBelow(card) && that.isSameColor(card);
+			return card.$element.nextAll().length === 0 && that.isRankBelow(card) && that.isSameColor(card);
 		} catch (err) {
 			return false;
 		}
 	};
-
-	var isSingleCard = function (that, card) {
-		try {
-			console.log('3 lines: that, card, nextall.length')
-			console.log(that);
-			console.log(card);
-			console.log(card.$element.nextAll().length);
-			return card.$element.nextAll().length === 0;
-		} catch (err) {
-			return false;
-		}
-	}
 
 	this.stack = new Stack($('#js-stack'), deck);
 	this.waste = new Stack($('#js-waste'), deck);
@@ -36,10 +24,8 @@ function Board(deck) {
 
 	this.fundation["js-foundation-spades"].addFilter(isAce);
 	this.fundation["js-foundation-spades"].addFilter(isInColorOrder);
-	this.fundation["js-foundation-spades"].addFilter(isSingleCard);
 	this.fundation["js-foundation-clubs"].addFilter(isAce);
 	this.fundation["js-foundation-clubs"].addFilter(isInColorOrder);
-	this.fundation["js-foundation-clubs"].addFilter(isSingleCard);
 	this.fundation["js-foundation-tiles"].addFilter(isAce);
 	this.fundation["js-foundation-tiles"].addFilter(isInColorOrder);
 	this.fundation["js-foundation-hearts"].addFilter(isAce);
