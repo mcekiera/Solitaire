@@ -336,8 +336,8 @@
 
 .card {
   background-image: url("../img/back.svg");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  background-color: #fff; }
+  background-color: transparent; }
 
 /*# sourceMappingURL=cards.css.map */
