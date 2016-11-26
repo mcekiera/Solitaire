@@ -1,22 +1,23 @@
-$ranks: 'A',1,2,3,4,5,6,7,8,9,10,'J','Q','K';
+$ranks: 'A',2,3,4,5,6,7,8,9,10,'J','Q','K';
 $colors: 'clubs', 'spades', 'hearts', 'tiles';
+
+@mixin fullBackground($path) {
+  background-image: url($path);
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}
 
 @each $color in $colors {
   @each $rank in $ranks {
 
 	##{$color}-#{$rank}.uncovered:after {
-	  background-image: url('../img/#{$color}/#{$color}-#{$rank}.svg');
-	  background-size: cover;
-	  background-position: center;
-	  background-color: transparent;
+	  @include fullBackground('../img/#{$color}/#{$color}-#{$rank}.svg');
 	}
 
   }
 }
 
 .card {
-  background-image: url('../img/back.svg');
-  background-size: contain;
-  background-position: center;
-  background-color: transparent;
+  @include fullBackground('../img/back.svg');
 }

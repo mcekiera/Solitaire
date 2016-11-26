@@ -4,12 +4,6 @@
   background-position: center;
   background-color: transparent; }
 
-#clubs-1.uncovered:after {
-  background-image: url("../img/clubs/clubs-1.svg");
-  background-size: cover;
-  background-position: center;
-  background-color: transparent; }
-
 #clubs-2.uncovered:after {
   background-image: url("../img/clubs/clubs-2.svg");
   background-size: cover;
@@ -84,12 +78,6 @@
 
 #spades-A.uncovered:after {
   background-image: url("../img/spades/spades-A.svg");
-  background-size: cover;
-  background-position: center;
-  background-color: transparent; }
-
-#spades-1.uncovered:after {
-  background-image: url("../img/spades/spades-1.svg");
   background-size: cover;
   background-position: center;
   background-color: transparent; }
@@ -172,12 +160,6 @@
   background-position: center;
   background-color: transparent; }
 
-#hearts-1.uncovered:after {
-  background-image: url("../img/hearts/hearts-1.svg");
-  background-size: cover;
-  background-position: center;
-  background-color: transparent; }
-
 #hearts-2.uncovered:after {
   background-image: url("../img/hearts/hearts-2.svg");
   background-size: cover;
@@ -256,12 +238,6 @@
   background-position: center;
   background-color: transparent; }
 
-#tiles-1.uncovered:after {
-  background-image: url("../img/tiles/tiles-1.svg");
-  background-size: cover;
-  background-position: center;
-  background-color: transparent; }
-
 #tiles-2.uncovered:after {
   background-image: url("../img/tiles/tiles-2.svg");
   background-size: cover;
@@ -336,7 +312,7 @@
 
 .card {
   background-image: url("../img/back.svg");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-color: transparent; }
 
