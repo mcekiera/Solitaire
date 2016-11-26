@@ -17,6 +17,27 @@ var SOLITAIRE = {
 
 			return arr;
 		}();
+
+		this.piles = function () {
+			var piles = [];
+			var r;
+			for(r = 0; r < 7; r += 1) {
+				var model = new SOLITAIRE.pileModel();
+				var view = new SOLITAIRE.pileView(model, $('#js-tableau-' + r));
+				console.log('#js-tableau-' + r)
+				var controller = new SOLITAIRE.pileController(model, view);
+				piles.push(model);
+			}
+
+			for(var t = 0; t < 7; t += 1) {
+				for(var k = 1; k <= t+1; k += 1) {
+					var card = that.cards.splice(0,1)[0];
+					console.log(card.getID());
+					piles[t].addCard(card);
+				}
+			}
+			return piles;
+		}();
 	},
 
 	cardModel: ''

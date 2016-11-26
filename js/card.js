@@ -1,7 +1,7 @@
 SOLITAIRE.cardModel = function (color, rank) {
 	var covered = true;
 	var that = this;
-
+	console.log(color + '-' + rank);
 	this.getColor = function () {
 		return color;
 	};
