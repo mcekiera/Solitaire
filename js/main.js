@@ -1,0 +1,1 @@
+SOLITAIRE.init();

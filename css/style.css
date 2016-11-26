@@ -23,20 +23,20 @@ li {
 .board__bottom {
   min-height: 70vh; }
 
-.col-deck-1 {
+.col-pile-1 {
   min-width: 80px; }
 
-.col-deck-4 {
+.col-pile-4 {
   min-width: 320px; }
 
-.col-deck-offset-1 {
+.col-pile-offset-1 {
   margin-left: 80px; }
 
 .box {
   min-height: 130px;
   position: relative; }
 
-.deck {
+.pile {
   border: 1px dotted #fff;
   display: inline-block;
   float: left;

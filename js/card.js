@@ -1,34 +1,55 @@
-function Card(color, rank) {
-	this.color = color;
-	this.rank = rank;
-	this.id = this.color + '-' + this.rank;
-	this.$element = $('#' + this.id);
-}
+SOLITAIRE.cardModel = function (color, rank) {
+	var covered = true;
+	var that = this;
 
-Card.prototype.isSameColor = function (card) {
-	return this.color === card.color;
+	this.getColor = function () {
+		return color;
+	};
+
+	this.getRank = function () {
+		return rank;
+	};
+
+	this.getID = function () {
+		return color + '-' + rank;
+	};
+
+	this.getCovered = function () {
+		return covered;
+	};
+
+	this.flip = new SOLITAIRE.Event(this);
+
+	this.setCover = function (val) {
+		covered = val;
+		that.flip.notify({});
+	};
 };
 
-Card.prototype.isRankOver = function (card) {
-	return Deck.ranks.indexOf(this.rank) === Deck.ranks.indexOf(card.rank) + 1;
+SOLITAIRE.CardView = function (model, element) {
+	var that = this;
+	this.model = model;
+	this.$element = element;
+
+	this.clicked = new SOLITAIRE.Event(this);
+
+	this.model.flip.attach(function () {
+		if(that.model.getCovered()) {
+			that.$element.removeClass('uncovered').addClass('covered');
+		} else {
+			that.$element.removeClass('covered').addClass('uncovered');
+		}
+	});
+
+	this.$element.click(function () {
+		console.log(that);
+		that.clicked.notify({});
+	});
 };
 
-Card.prototype.isRankBelow = function (card) {
-	return Deck.ranks.indexOf(this.rank) === Deck.ranks.indexOf(card.rank) - 1;
-};
+SOLITAIRE.CardController = function (model, view) {
 
-Card.prototype.isSameColorGroup = function (card) {
-	if (this.color === 'spades' || this.color ===  'clubs') {
-		return card.color === 'spades' || card.color === 'clubs';
-	} else {
-		return card.color === 'tiles' || card.color === 'hearts';
-	}
-};
-
-Card.isAce = function (card) {
-	return card.rank === 'A';
-};
-
-Card.isKing = function (card) {
-	return card.rank === 'K';
+	view.clicked.attach(function () {
+		model.setCover(false);
+	});
 };
