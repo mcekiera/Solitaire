@@ -28,6 +28,11 @@ SOLITAIRE.cardModel = function (color, rank) {
 
 SOLITAIRE.CardView = function (model, element) {
 	var that = this;
+	var makeDraggable = function() {
+		"use strict";
+		that.$element.draggable();
+	};
+
 	this.model = model;
 	this.$element = element;
 
@@ -38,6 +43,7 @@ SOLITAIRE.CardView = function (model, element) {
 			that.$element.removeClass('uncovered').addClass('covered');
 		} else {
 			that.$element.removeClass('covered').addClass('uncovered');
+			makeDraggable();
 		}
 	});
 
