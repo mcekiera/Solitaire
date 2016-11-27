@@ -28,34 +28,85 @@ SOLITAIRE.cardModel = function (color, rank) {
 
 SOLITAIRE.CardView = function (model, element) {
 	var that = this;
-	var makeDraggable = function() {
-		"use strict";
-		that.$element.draggable();
-	};
 
 	this.model = model;
 	this.$element = element;
 
-	this.clicked = new SOLITAIRE.Event(this);
+	this.uncover = new SOLITAIRE.Event(this);
 
 	this.model.flip.attach(function () {
 		if(that.model.getCovered()) {
 			that.$element.removeClass('uncovered').addClass('covered');
 		} else {
 			that.$element.removeClass('covered').addClass('uncovered');
-			makeDraggable();
 		}
-	});
-
-	this.$element.click(function () {
-		console.log(that);
-		that.clicked.notify({});
 	});
 };
 
 SOLITAIRE.CardController = function (model, view) {
+	var v = view.$element;
 
-	view.clicked.attach(function () {
+	view.uncover.attach(function () {
 		model.setCover(false);
+
+		v.draggable({
+			stack: ".card",
+
+			revert : function(event, ui) {
+				$(this).data("uiDraggable").originalPosition = {
+					top : 0,
+					left : 0,
+					zIndex : $(this).next().css('z-index') - 1
+				};
+				$('.uncovered.hold').each(function() {
+					$(this).removeClass('ui-draggable-dragging');
+					$(this).animate({top: "0", left: "0"}, 500);
+					$(this).removeClass('hold');
+				});
+				return 'true';
+			},
+
+			start: function() {
+				$('.uncovered.hold').each(function() {
+					$(this).trigger('dragstart');
+				});
+			},
+
+			drag: function() {
+				var maintop = $(this).css('top');
+				var mainleft = $(this).css('left');
+
+				$('.uncovered.hold').each(function() {
+					$(this).trigger('drag');
+					$(this).addClass('ui-draggable-dragging');
+					$(this).css('left', mainleft);
+					$(this).css('top', maintop);
+				});
+			},
+
+			stop: function() {
+				var maintop = $(this).css('top');
+				var mainleft = $(this).css('left');
+
+
+				$('.uncovered.hold').each(function() {
+					$(this).trigger('dragstop');
+					$(this).removeClass('ui-draggable-dragging');
+				});
+
+				$('.uncovered.hold:first').css('top', maintop);
+				$(this).removeClass('prime');
+				$('.hold').removeClass('hold');
+			}
+		});
+
+		v.on('mousedown', function () {
+			$(this).addClass('prime');
+			$(this).nextAll().addClass('hold');
+		});
+
+		v.on('mouseup', function () {
+			$(this).removeClass('prime');
+		});
 	});
 };

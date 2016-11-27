@@ -47,14 +47,14 @@ li {
   background-color: #339933;
   margin: 5px; }
 
-.deck {
+.stash {
   position: relative; }
-  .deck ul {
+  .stash ul {
     top: 0px; }
-    .deck ul li {
+    .stash ul li {
       margin-top: 0px;
       position: absolute; }
-  .deck li {
+  .stash li {
     position: absolute;
     top: 0;
     left: 0; }

@@ -1,6 +1,10 @@
-SOLITAIRE.pileModel = function () {
+SOLITAIRE.PileModel = function (id) {
 	var that = this;
 	var cards = [];
+
+	this.getID = function() {
+		return id;
+	};
 
 	this.getCards = function () {
 		return cards;
@@ -22,7 +26,7 @@ SOLITAIRE.pileModel = function () {
 
 };
 
-SOLITAIRE.pileView = function (model, element) {
+SOLITAIRE.PileView = function (model, element) {
 	var that = this;
 	this.$element = element;
 
@@ -42,6 +46,6 @@ SOLITAIRE.pileView = function (model, element) {
 	};
 };
 
-SOLITAIRE.pileController = function (model, view) {
+SOLITAIRE.PileController = function (model, view) {
 
 };

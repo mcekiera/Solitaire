@@ -1,36 +1,26 @@
 var SOLITAIRE = {
 	init: function () {
 		var that = this;
+		var piles = ['js-stack', 'js-waste', 'js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6', 'js-foundation-0', 'js-foundation-1', 'js-foundation-2', 'js-foundation-3'];
+		var deal = {
+			'js-stack': 24,
+			'js-tableau-0': 1,
+			'js-tableau-1': 2,
+			'js-tableau-2': 3,
+			'js-tableau-3': 4,
+			'js-tableau-4': 5,
+			'js-tableau-5': 6,
+			'js-tableau-6': 7
+		};
+
 		this.colors = ['clubs', 'spades', 'hearts', 'tiles'];
 		this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 		this.deck = new SOLITAIRE.Deck();
 
-		this.piles = function () {
-			var piles = [];
-			var r;
-			for(r = 0; r < 7; r += 1) {
-				var model = new SOLITAIRE.pileModel();
-				var view = new SOLITAIRE.pileView(model, $('#js-tableau-' + r));
-				console.log('#js-tableau-' + r)
-				var controller = new SOLITAIRE.pileController(model, view);
-				piles.push(model);
-			}
-
-			for(var t = 0; t < 7; t += 1) {
-				for(var k = 1; k <= t+1; k += 1) {
-					var card = that.deck.getRandomCard();
-					console.log(card.getID());
-					piles[t].addCard(card);
-				}
-			}
-			return piles;
-		}();
-	},
-
-	cardModel: ''
-	
-
+		this.board = new SOLITAIRE.Board(this.deck,piles,deal);
+		this.board.init();
+	}
 };
 
 
