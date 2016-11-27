@@ -44,9 +44,13 @@ SOLITAIRE.CardView = function (model, element) {
 };
 
 SOLITAIRE.CardController = function (model, view) {
-	var v = view.$element;
+	this.getColor = model.getColor;
+	this.getRank = model.getRank;
+	this.getCovered = model.getCovered;
+	this.getID = model.getID;
 
-	view.uncover.attach(function () {
+	this.uncover = function () {
+		var v = view.$element;
 		model.setCover(false);
 
 		v.draggable({
@@ -108,5 +112,5 @@ SOLITAIRE.CardController = function (model, view) {
 		v.on('mouseup', function () {
 			$(this).removeClass('prime');
 		});
-	});
+	};
 };

@@ -1,7 +1,12 @@
 var SOLITAIRE = {
 	init: function () {
 		var that = this;
-		var piles = ['js-stack', 'js-waste', 'js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6', 'js-foundation-0', 'js-foundation-1', 'js-foundation-2', 'js-foundation-3'];
+		// var piles = ['js-stack', 'js-waste', 'js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6', 'js-foundation-0', 'js-foundation-1', 'js-foundation-2', 'js-foundation-3'];
+		var piles = {
+			basic: ['js-stack', 'js-waste'],
+			tableau: ['js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6'],
+			foundation: ['js-foundation-0', 'js-foundation-1', 'js-foundation-2', 'js-foundation-3']
+		};
 		var deal = {
 			'js-stack': 24,
 			'js-tableau-0': 1,
