@@ -29,6 +29,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 				for (var i = 0; i < piles[key].length; i += 1) {
 					var pile = createPile(piles[key][i]);
 					object[piles[key][i]] = pile;
+					console.log(piles[key][i])
 					that[key].push(pile);
 				}
 			}
