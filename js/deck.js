@@ -8,6 +8,7 @@ SOLITAIRE.Deck = function () {
 				var model = new SOLITAIRE.cardModel(SOLITAIRE.colors[i], SOLITAIRE.ranks[k]);
 				var view = new SOLITAIRE.CardView(model, $('#' + model.getID()));
 				var controller = new SOLITAIRE.CardController(model, view);
+				that[model.getID()] = model;
 				array.push(controller);
 			}
 		}

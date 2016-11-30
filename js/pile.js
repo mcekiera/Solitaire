@@ -60,7 +60,7 @@ SOLITAIRE.PileView = function (model, element) {
 
 	this.updateView = function () {
 		var len =  model.cards.length;
-		console.log(model.getID() + ': ' + len)
+		console.log(model.getID() + ': ' + len);
 		if (len >= 10 && !that.$element.children().hasClass('tight')) {
 			that.$element.children().toggleClass('tight');
 		} else if(len < 10 && that.$element.children().hasClass('tight')){
@@ -70,12 +70,14 @@ SOLITAIRE.PileView = function (model, element) {
 		for (var i = 0; i < len; i++) {
 			var $card = $('#' + model.cards[i].getID());
 			that.$element.children().append($card);
+			$card.css('zIndex', 20 + i);
 		}
 	};
 };
 
 SOLITAIRE.PileController = function (model, view) {
 	var that = this;
+	var rules = [];
 	this.addCard = model.addCard;
 	this.addCards = model.addCards;
 	this.removeCard = model.removeCard;
@@ -83,6 +85,19 @@ SOLITAIRE.PileController = function (model, view) {
 	this.getCards = model.getCards;
 	this.length = function () {
 		return model.cards.length;
+	};
+
+	this.setRules = function (rule) {
+		rules = rule;
+	};
+
+	this.test = function (arg) {
+		for(var i = 0; i < rules.length; i += 1) {
+			if(rules[i].call(that, arg)) {
+				return true;
+			}
+		}
+		return false;
 	};
 
 	this.toString = function () {
@@ -95,7 +110,7 @@ SOLITAIRE.PileController = function (model, view) {
 
 	this.uncoverLast = function () {
 		var card = that.getLastCard();
-		console.log('last:' + card)
+		console.log('last:' + card);
 		if (typeof card !== 'undefined' && card.getCovered()) {
 			card.uncover();
 		}
@@ -115,6 +130,17 @@ SOLITAIRE.PileController = function (model, view) {
 					toID: $(event.target).parent().attr('id')
 				};
 				that.moved.notify(trans);
+				console.log(ui.draggable.model);
+			},
+
+			accept: function (card) {
+				"use strict";
+				var cards = {
+					fromID: card.parent().parent().attr('id)'),
+					toDrop: SOLITAIRE.deck[card.attr('id')],
+					onPile: that.getLastCard()
+				};
+				return that.test(cards);
 			}
 		});
 	};

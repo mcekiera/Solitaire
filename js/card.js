@@ -1,7 +1,7 @@
 SOLITAIRE.cardModel = function (color, rank) {
 	var covered = true;
 	var that = this;
-	console.log(color + '-' + rank);
+
 	this.getColor = function () {
 		return color;
 	};
@@ -62,8 +62,7 @@ SOLITAIRE.CardController = function (model, view) {
 			revert : function(event, ui) {
 				$(this).data("uiDraggable").originalPosition = {
 					top : 0,
-					left : 0,
-					zIndex : $(this).next().css('z-index') - 1
+					left : 0
 				};
 				$('.uncovered.hold').each(function() {
 					$(this).removeClass('ui-draggable-dragging');
@@ -73,7 +72,7 @@ SOLITAIRE.CardController = function (model, view) {
 				return 'true';
 			},
 
-			start: function() {
+			start: function(event, ui) {
 				$('.uncovered.hold').each(function() {
 					$(this).trigger('dragstart');
 				});

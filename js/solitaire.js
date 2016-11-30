@@ -1,7 +1,7 @@
 var SOLITAIRE = {
 	init: function () {
 		var that = this;
-		// var piles = ['js-stack', 'js-waste', 'js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6', 'js-foundation-0', 'js-foundation-1', 'js-foundation-2', 'js-foundation-3'];
+
 		var piles = {
 			basic: ['js-stack', 'js-waste'],
 			tableau: ['js-tableau-0', 'js-tableau-1', 'js-tableau-2', 'js-tableau-3', 'js-tableau-4', 'js-tableau-5', 'js-tableau-6'],
@@ -22,8 +22,9 @@ var SOLITAIRE = {
 		this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 		this.deck = new SOLITAIRE.Deck();
+		this.rules = new SOLITAIRE.Rulebook();
 
-		this.board = new SOLITAIRE.Board(this.deck,piles,deal);
+		this.board = new SOLITAIRE.Board(this.deck,piles,deal,this.rules);
 		this.board.init();
 	}
 };

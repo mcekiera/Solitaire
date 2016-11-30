@@ -1,4 +1,4 @@
-SOLITAIRE.Board = function (deck, piles, deal) {
+SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 	"use strict";
 	var that = this;
 
@@ -62,7 +62,6 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 
 	var dealFromStack = function () {
 		$('#' + that.piles['js-stack'].getID()).click(function () {
-			console.log('in')
 			var card = that.piles['js-stack'].getLastCard();
 			card.uncover();
 			var args = {
@@ -74,11 +73,22 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 		});
 	};
 
+	var setRules = function () {
+		for (var key in piles) {
+			if (piles.hasOwnProperty(key)) {
+				var rule = rulebook.get[key];
+				for (var i = 0; i < piles[key].length; i += 1) {
+					that.piles[piles[key][i]].setRules(rule);
+				}
+			}
+		}
+	};
+
 	this.init = function () {
 		dealCards();
 		uncoverLast();
 		dealFromStack();
-
+		setRules();
 
 
 	};
