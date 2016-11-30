@@ -118,8 +118,4 @@ SOLITAIRE.PileController = function (model, view) {
 			}
 		});
 	};
-
-	view.updated.attach(function () {
-		that.uncoverLast();
-	});
 };

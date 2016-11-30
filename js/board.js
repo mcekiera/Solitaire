@@ -12,6 +12,12 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 			moveCards(args);
 		});
 
+		if(id !== 'js-stack') {
+			view.updated.attach(function () {
+				controller.uncoverLast();
+			});
+		}
+
 		return controller;
 	};
 
