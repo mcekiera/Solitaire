@@ -13,9 +13,13 @@ ul {
   left: 0;
   min-width: 100%;
   min-height: 100%; }
+  ul.tight {
+    top: 112px; }
 
 li {
   margin-top: -94px; }
+  .tight li {
+    margin-top: -112px; }
 
 .board__top {
   min-height: 30vh; }

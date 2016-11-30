@@ -6,6 +6,13 @@ SOLITAIRE.PileModel = function (id) {
 		return id;
 	};
 
+	this.getCards = function (index) {
+		var hand = that.cards.splice(index);
+		that.cardRemoved.notify({});
+		return hand;
+
+	};
+
 	this.length = function () {
 		return that.cards.length;
 	};
@@ -52,8 +59,17 @@ SOLITAIRE.PileView = function (model, element) {
 	});
 
 	this.updateView = function () {
-		for (var i = 0; i < model.cards.length; i++) {
-			that.$element.children().append($('#' + model.cards[i].getID()));
+		var len =  model.cards.length;
+		console.log(model.getID() + ': ' + len)
+		if (len >= 10 && !that.$element.children().hasClass('tight')) {
+			that.$element.children().toggleClass('tight');
+		} else if(len < 10 && that.$element.children().hasClass('tight')){
+			that.$element.children().toggleClass('tight');
+		}
+
+		for (var i = 0; i < len; i++) {
+			var $card = $('#' + model.cards[i].getID());
+			that.$element.children().append($card);
 		}
 	};
 };
@@ -64,6 +80,7 @@ SOLITAIRE.PileController = function (model, view) {
 	this.addCards = model.addCards;
 	this.removeCard = model.removeCard;
 	this.getID = model.getID;
+	this.getCards = model.getCards;
 	this.length = function () {
 		return model.cards.length;
 	};
@@ -73,10 +90,6 @@ SOLITAIRE.PileController = function (model, view) {
 	};
 
 	this.indexOf = model.indexOf;
-
-	this.getCards = function (index) {
-		return model.cards.splice(index);
-	};
 
 	this.moved = new SOLITAIRE.Event(this);
 

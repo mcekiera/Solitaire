@@ -1,5 +1,6 @@
 $cardW: 94px;
 $cardH: 130px;
+$tight: $cardW + (($cardH - $cardW) / 2);
 
 * {
   //border: 1px solid #fff;
@@ -19,10 +20,16 @@ ul {
   left: 0;
   min-width: 100%;
   min-height: 100%;
+  &.tight {
+	top: $tight;
+  }
 }
 
 li {
   margin-top: -$cardW;
+  .tight & {
+	margin-top: -$tight;
+  }
 }
 
 .board__top {
