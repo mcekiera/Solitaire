@@ -1,14 +1,21 @@
 SOLITAIRE.Board = function (deck, piles, deal) {
+	"use strict";
 	var that = this;
 
 	var createPile = function (id) {
 		var model = new SOLITAIRE.PileModel(id);
 		var view = new SOLITAIRE.PileView(model,$('#' + id));
 		var controller = new SOLITAIRE.PileController(model, view);
+		controller.init();
+
+		controller.moved.attach(function (sender, args) {
+			moveCards(args);
+		});
+
 		return controller;
 	};
 
-	var getPiles = function () {
+	this.piles = (function () {
 		var object = {};
 		for (var key in piles) {
 			if (piles.hasOwnProperty(key)) {
@@ -21,10 +28,7 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 			}
 		}
 		return object;
-	};
-
-
-	this.piles = getPiles();
+	}());
 
 	var dealCards = function () {
 		for (var key in deal) {
@@ -42,10 +46,20 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 		}
 	};
 
+	var moveCards = function(args) {
+		var fromPile = that.piles[args.fromID];
+		var toPile = that.piles[args.toID];
+		var index = fromPile.indexOf(args.cardID)
+
+		toPile.addCards(fromPile.getCards(index));
+	};
+
 
 	this.init = function () {
 		dealCards();
 		uncoverLast();
+
+
 	};
 
 };

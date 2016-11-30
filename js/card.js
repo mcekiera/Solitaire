@@ -48,6 +48,9 @@ SOLITAIRE.CardController = function (model, view) {
 	this.getRank = model.getRank;
 	this.getCovered = model.getCovered;
 	this.getID = model.getID;
+	this.toString = function () {
+		return model.getID();
+	};
 
 	this.uncover = function () {
 		var v = view.$element;
