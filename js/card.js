@@ -32,24 +32,34 @@ SOLITAIRE.CardView = function (model, element) {
 	this.model = model;
 	this.$element = element;
 
-	this.uncover = new SOLITAIRE.Event(this);
-
 	this.model.flip.attach(function () {
-		if(that.model.getCovered()) {
-			that.$element.removeClass('uncovered').addClass('covered');
+		if(model.getCovered()) {
+			that.$element.removeClass('uncovered');
+			that.$element.addClass('covered');
 		} else {
-			that.$element.removeClass('covered').addClass('uncovered');
+			that.$element.removeClass('covered');
+			that.$element.addClass('uncovered');
 		}
 	});
 };
 
 SOLITAIRE.CardController = function (model, view) {
+	var that = this;
 	this.getColor = model.getColor;
 	this.getRank = model.getRank;
 	this.getCovered = model.getCovered;
 	this.getID = model.getID;
 	this.toString = function () {
 		return model.getID();
+	};
+
+	this.cover = function () {
+		model.setCover(true);
+		try {
+			view.$element.draggable('disable');
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	this.uncover = function () {

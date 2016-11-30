@@ -1,6 +1,7 @@
 SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 	"use strict";
 	var that = this;
+	var moves = [];
 
 	var createPile = function (id) {
 		var model = new SOLITAIRE.PileModel(id);
@@ -29,7 +30,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 				for (var i = 0; i < piles[key].length; i += 1) {
 					var pile = createPile(piles[key][i]);
 					object[piles[key][i]] = pile;
-					console.log(piles[key][i])
+					console.log(piles[key][i]);
 					that[key].push(pile);
 				}
 			}
@@ -56,21 +57,25 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 	var moveCards = function(args) {
 		var fromPile = that.piles[args.fromID];
 		var toPile = that.piles[args.toID];
-		var index = fromPile.indexOf(args.cardID)
-
+		var index = fromPile.indexOf(args.cardID);
 		toPile.addCards(fromPile.getCards(index));
+
+		if (!args.revert) {
+			registerMove({move: 'move', args: args});
+		}
 	};
 
 	var dealFromStack = function () {
 		$('#' + that.piles['js-stack'].getID()).click(function () {
 			var card = that.piles['js-stack'].getLastCard();
-			card.uncover();
 			var args = {
 				cardID: card.getID(),
 				fromID: that.piles['js-stack'].getID(),
-				toID: that.piles['js-waste'].getID()
+				toID: that.piles['js-waste'].getID(),
+				prev: true
 			};
 			moveCards(args);
+			card.uncover();
 		});
 	};
 
@@ -85,12 +90,35 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		}
 	};
 
+	var revert = function (input) {
+		moveCards({
+			fromID: input.args.toID,
+			toID: input.args.fromID,
+			cardID: input.args.cardID,
+			revert: true
+		});
+		if(input.args.prev) {
+			that.piles[input.args.fromID].coverFirst();
+		}
+	};
+
+	var cleanMoves = function () {
+		moves = [];
+	};
+
+	var registerMove = function (args) {
+		moves.push(args);
+	};
+
 	this.init = function () {
 		dealCards();
 		uncoverLast();
 		dealFromStack();
 		setRules();
+		cleanMoves();
 
-
+		$('#js-revert').click(function () {
+			revert(moves.pop());
+		});
 	};
 };

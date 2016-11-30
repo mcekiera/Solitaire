@@ -83,6 +83,14 @@ SOLITAIRE.PileController = function (model, view) {
 	this.removeCard = model.removeCard;
 	this.getID = model.getID;
 	this.getCards = model.getCards;
+
+	this.coverFirst = function (num) {
+		var card = view.$element.find('.uncovered').first().attr('id');
+		model.cards.filter(function (c) {
+			return c.getID() === card;
+		})[0].cover();
+	};
+
 	this.length = function () {
 		return model.cards.length;
 	};
@@ -110,7 +118,6 @@ SOLITAIRE.PileController = function (model, view) {
 
 	this.uncoverLast = function () {
 		var card = that.getLastCard();
-		console.log('last:' + card);
 		if (typeof card !== 'undefined' && card.getCovered()) {
 			card.uncover();
 		}
@@ -127,10 +134,10 @@ SOLITAIRE.PileController = function (model, view) {
 				var trans = {
 					cardID: ui.draggable.attr('id'),
 					fromID: ui.draggable.parent().parent().attr('id'),
-					toID: $(event.target).parent().attr('id')
+					toID: $(event.target).parent().attr('id'),
+					prev: ui.draggable.prev().hasClass('covered')
 				};
 				that.moved.notify(trans);
-				console.log(ui.draggable.model);
 			},
 
 			accept: function (card) {
