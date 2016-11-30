@@ -82,12 +82,15 @@ SOLITAIRE.CardController = function (model, view) {
 			drag: function() {
 				var maintop = $(this).css('top');
 				var mainleft = $(this).css('left');
+				var z = $(this).css('zIndex');
 
 				$('.uncovered.hold').each(function() {
+					z += 1;
 					$(this).trigger('drag');
 					$(this).addClass('ui-draggable-dragging');
 					$(this).css('left', mainleft);
 					$(this).css('top', maintop);
+					$(this).css('zIndex',z);
 				});
 			},
 

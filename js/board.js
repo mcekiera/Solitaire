@@ -54,12 +54,22 @@ SOLITAIRE.Board = function (deck, piles, deal) {
 		toPile.addCards(fromPile.getCards(index));
 	};
 
-
 	this.init = function () {
 		dealCards();
 		uncoverLast();
 
+		$('#' + that.piles['js-stack'].getID()).click(function () {
+			console.log('in')
+			var card = that.piles['js-stack'].getLastCard();
+			card.uncover();
+			var args = {
+				cardID: card.getID(),
+				fromID: that.piles['js-stack'].getID(),
+				toID: that.piles['js-waste'].getID()
+			};
+			moveCards(args);
+		})();
+
 
 	};
-
 };

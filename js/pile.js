@@ -53,11 +53,7 @@ SOLITAIRE.PileView = function (model, element) {
 
 	this.updateView = function () {
 		for (var i = 0; i < model.cards.length; i++) {
-			var id = '#' + model.cards[i].getID();
-			var card = $(id);
-			that.$element.children().append(card);
-			// var z = 30 + i;
-			// card.css('zIndex', z);
+			that.$element.children().append($('#' + model.cards[i].getID()));
 		}
 	};
 };
