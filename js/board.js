@@ -66,7 +66,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 	};
 
 	var dealFromStack = function () {
-		$('#' + that.piles['js-stack'].getID()).click(function () {
+		$('#js-stack').click(function () {
 			var card = that.piles['js-stack'].getLastCard();
 			var args = {
 				cardID: card.getID(),
@@ -119,6 +119,10 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 
 		$('#js-revert').click(function () {
 			revert(moves.pop());
+		});
+
+		$('#js-new-game').click(function () {
+			SOLITAIRE.newGame();
 		});
 	};
 };

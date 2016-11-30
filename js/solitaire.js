@@ -23,9 +23,12 @@ var SOLITAIRE = {
 
 		this.deck = new SOLITAIRE.Deck();
 		this.rules = new SOLITAIRE.Rulebook();
-
 		this.board = new SOLITAIRE.Board(this.deck,piles,deal,this.rules);
 		this.board.init();
+
+		this.newGame = function () {
+			location.reload();
+		};
 	}
 };
 

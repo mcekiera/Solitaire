@@ -126,6 +126,10 @@ SOLITAIRE.PileController = function (model, view) {
 	this.getLastCard = function () {
 		return model.cards[model.cards.length-1];
 	};
+
+	this.reset = function () {
+		model.cards = [];
+	};
 	
 	this.init = function () {
 		view.$element.children().droppable({
