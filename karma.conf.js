@@ -10,14 +10,18 @@ module.exports = function(config) {
 
 		// frameworks to use
 		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-		frameworks: ['jasmine'],
+		frameworks: ['jasmine','fixture'],
 
 
 		// list of files / patterns to load in the browser
 		files: [
+
+
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
 			'node_modules/jquery-ui-dist/jquery-ui.js',
+
+			{pattern: 'test/fixture/*.html', watched: true, served: true, included: false},
 
 			'js/solitaire.js',
 			'js/board.js',
@@ -39,6 +43,7 @@ module.exports = function(config) {
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
+			'*.html': []
 		},
 
 
@@ -67,13 +72,18 @@ module.exports = function(config) {
 
 		// start these browsers
 		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-		browsers: ['Firefox'
-		],
+		browsers: ['Firefox'],
 
 
 		// Continuous Integration mode
 		// if true, Karma captures browsers, runs the tests and exits
 		singleRun: false,
+
+		plugins: [
+			'karma-jasmine',
+			'karma-fixture',
+			'karma-firefox-launcher'
+		],
 
 		// Concurrency level
 		// how many browser should be started simultaneous

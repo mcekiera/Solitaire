@@ -37,7 +37,7 @@ SOLITAIRE.Rulebook = function () {
 	};
 
 	/**
-	 * Determines if second card is one rank higher than first one.
+	 * Determines if first card is one rank higher than second one.
 	 * @param first, compared card.
 	 * @param second, compared card.
 	 * @returns {boolean} true if second card is rank higher than first one.
@@ -47,7 +47,7 @@ SOLITAIRE.Rulebook = function () {
 	};
 
 	/**
-	 * Determines if second card is one rank below than first one.
+	 * Determines if first card is one rank below than second one.
 	 * @param first, compared card.
 	 * @param second, compared card.
 	 * @returns {boolean} true if second card is rank below than first one.
