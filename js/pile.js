@@ -2,6 +2,7 @@ SOLITAIRE.PileModel = function (id) {
 	var that = this;
 
 	this.cards = [];
+
 	this.getID = function() {
 		return id;
 	};
@@ -41,6 +42,7 @@ SOLITAIRE.PileModel = function (id) {
 
 SOLITAIRE.PileView = function (model, element) {
 	var that = this;
+
 	this.$element = element;
 
 	this.updated = new SOLITAIRE.Event(this);
