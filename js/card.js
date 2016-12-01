@@ -1,4 +1,4 @@
-SOLITAIRE.cardModel = function (color, rank) {
+SOLITAIRE.CardModel = function (color, rank) {
 	var covered = true;
 	var that = this;
 

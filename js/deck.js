@@ -5,7 +5,7 @@ SOLITAIRE.Deck = function () {
 
 		for (var i = 0; i < SOLITAIRE.colors.length; i++) {
 			for (var k = 0; k < SOLITAIRE.ranks.length; k++) {
-				var model = new SOLITAIRE.cardModel(SOLITAIRE.colors[i], SOLITAIRE.ranks[k]);
+				var model = new SOLITAIRE.CardModel(SOLITAIRE.colors[i], SOLITAIRE.ranks[k]);
 				var view = new SOLITAIRE.CardView(model, $('#' + model.getID()));
 				var controller = new SOLITAIRE.CardController(model, view);
 				view.$element.appendTo($('#js-deck')).removeClass('uncovered').addClass('covered');

@@ -17,14 +17,23 @@ module.exports = function(config) {
 		files: [
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
-			'js/*.js'
-			// 'test/*.spec.js'
+			'node_modules/jquery-ui-dist/jquery-ui.js',
+
+			'js/solitaire.js',
+			'js/board.js',
+			'js/card.js',
+			'js/deck.js',
+			'js/event.js',
+			'js/pile.js',
+			'js/rulebook.js',
+			'js/main.js',
+
+			'test/rulebook.spec.js'
 		],
 
 
 		// list of files to exclude
-		exclude: [ 'js/board.js', 'js/solitaire.js'
-		],
+		exclude:[],
 
 
 		// preprocess matching files before serving them to the browser

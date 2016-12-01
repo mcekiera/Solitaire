@@ -7,13 +7,13 @@
 
 SOLITAIRE.Rulebook = function () {
 	"use strict";
-
+	var that = this;
 	/**
 	 * Determines, if given card is an Ace rank.
 	 * @param card, examined card.
 	 * @returns {boolean} true, if given card is Ace rank.
 	 */
-	var isAce = function (card) {
+	this.isAce = function (card) {
 		return card.getRank() === 'A';
 	};
 
@@ -22,7 +22,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param card, examined card.
 	 * @returns {boolean} true, if given card is King rank.
 	 */
-	var isKing = function (card) {
+	this.isKing = function (card) {
 		return card.getRank() === 'K';
 	};
 
@@ -32,7 +32,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param second, compared card.
 	 * @returns {boolean} true, if both cards are same color.
 	 */
-	var isSameColor = function (first, second) {
+	this.isSameColor = function (first, second) {
 		return first.getColor() === second.getColor();
 	};
 
@@ -42,7 +42,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param second, compared card.
 	 * @returns {boolean} true if second card is rank higher than first one.
 	 */
-	var isRankOver = function (first, second) {
+	this.isRankOver = function (first, second) {
 		return SOLITAIRE.ranks.indexOf(first.getRank()) === SOLITAIRE.ranks.indexOf(second.getRank()) + 1;
 	};
 
@@ -52,7 +52,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param second, compared card.
 	 * @returns {boolean} true if second card is rank below than first one.
 	 */
-	var isRankBelow = function (first, second) {
+	this.isRankBelow = function (first, second) {
 		return SOLITAIRE.ranks.indexOf(first.getRank()) === SOLITAIRE.ranks.indexOf(second.getRank()) - 1;
 	};
 
@@ -62,7 +62,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param second, compared card.
 	 * @returns {boolean} true if both cards belongs to one color group.
 	 */
-	var isSameColorGroup = function (first, second) {
+	this.isSameColorGroup = function (first, second) {
 		if (first.getColor() === 'spades' || first.getColor() ===  'clubs') {
 			return second.getColor() === 'spades' || second.getColor() === 'clubs';
 		} else {
@@ -74,7 +74,7 @@ SOLITAIRE.Rulebook = function () {
 	 * Determines, if user try to add more than one card to pile, when it is not allowed.
 	 * @returns {boolean} true, if attempt includes only one card.
 	 */
-	var isSingleCard = function () {
+	this.isSingleCard = function () {
 		return $('.hold').length === 0;
 	};
 
@@ -83,7 +83,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param card, represent the first card in the pile, if present
 	 * @returns {boolean} true if pile is empty.
 	 */
-	var pileIsEmpty = function (card) {
+	this.pileIsEmpty = function (card) {
 		return typeof card === 'undefined';
 	};
 
@@ -92,7 +92,7 @@ SOLITAIRE.Rulebook = function () {
 	 * @param args contains references to object necessary to examine particular case
 	 * @returns {*} true, if conditions are met: is a King rank, and pile is empty
 	 */
-	var cardOnWaste = function (args) {
+	this.cardOnWaste = function (args) {
 		return args.fromID === 'js-stack';
 	};
 
@@ -101,8 +101,8 @@ SOLITAIRE.Rulebook = function () {
 	 * @param args contains references to object necessary to examine particular case
 	 * @returns {*} true, if conditions are met: is a King rank, and pile is empty
 	 */
-	var aceOnFoundation = function (args) {
-		return pileIsEmpty(args.onPile) && isSingleCard() && isAce(args.toDrop);
+	this.aceOnFoundation = function (args) {
+		return that.pileIsEmpty(args.onPile) && that.isSingleCard() && that.isAce(args.toDrop);
 	};
 
 	/**
@@ -110,8 +110,8 @@ SOLITAIRE.Rulebook = function () {
 	 * @param args contains references to object necessary to examine particular case
 	 * @returns {*} true, if conditions are met: is a King rank, and pile is empty
 	 */
-	var kingOnEmptyPile = function (args) {
-		return isKing(args.toDrop) && pileIsEmpty(args.onPile);
+	this.kingOnEmptyPile = function (args) {
+		return that.isKing(args.toDrop) && that.pileIsEmpty(args.onPile);
 	};
 
 	/**
@@ -119,9 +119,9 @@ SOLITAIRE.Rulebook = function () {
 	 * @param args contains references to object necessary to examine particular case
 	 * @returns {boolean} true, if card meets conditions
 	 */
-	var cardOnFoundation = function (args) {
+	this.cardOnFoundation = function (args) {
 		try {
-			return isSingleCard() && isRankBelow(args.onPile, args.toDrop) && isSameColor(args.onPile, args.toDrop);
+			return that.isSingleCard() && that.isRankBelow(args.onPile, args.toDrop) && that.isSameColor(args.onPile, args.toDrop);
 		} catch (err) {
 			return false;
 		}
@@ -132,9 +132,9 @@ SOLITAIRE.Rulebook = function () {
 	 * @param args contains references to object necessary to examine particular case
 	 * @returns {boolean} true, if card meets conditions
 	 */
-	var cardOnTableau = function (args) {
+	this.cardOnTableau = function (args) {
 		try {
-			return !isSameColorGroup(args.toDrop, args.onPile) && isRankOver(args.onPile, args.toDrop);
+			return !that.isSameColorGroup(args.toDrop, args.onPile) && that.isRankOver(args.onPile, args.toDrop);
 		} catch (err) {
 			console.log(err);
 			return false;
@@ -146,9 +146,9 @@ SOLITAIRE.Rulebook = function () {
 	 * @type {{basic: *[], tableau: *[], foundation: *[]}}
 	 */
 	this.get = {
-		basic: [cardOnWaste],
-		tableau: [kingOnEmptyPile, cardOnTableau],
-		foundation: [aceOnFoundation, cardOnFoundation]
+		basic: [that.cardOnWaste],
+		tableau: [that.kingOnEmptyPile, that.cardOnTableau],
+		foundation: [that.aceOnFoundation, that.cardOnFoundation]
 	};
 };
 

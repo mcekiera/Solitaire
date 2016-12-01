@@ -46,7 +46,7 @@ SOLITAIRE.PileView = function (model, element) {
 	this.updated = new SOLITAIRE.Event(this);
 
 	model.cardAdded.attach(function (event, args) {
-		console.log('args: ' + args.items);
+		
 		for (var i = 0; i < args.items.length; i += 1) {
 			$('#' + args.items[i]).css('left', '').css('top', '');
 		}
@@ -60,7 +60,7 @@ SOLITAIRE.PileView = function (model, element) {
 
 	this.updateView = function () {
 		var len =  model.cards.length;
-		console.log(model.getID() + ': ' + len);
+		
 		if (len >= 10 && !that.$element.children().hasClass('tight')) {
 			that.$element.children().toggleClass('tight');
 		} else if(len < 10 && that.$element.children().hasClass('tight')){
