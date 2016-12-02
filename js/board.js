@@ -65,18 +65,46 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		}
 	};
 
-	var dealFromStack = function () {
-		$('#js-stack').click(function () {
-			var card = that.piles['js-stack'].getLastCard();
-			var args = {
-				cardID: card.getID(),
-				fromID: that.piles['js-stack'].getID(),
-				toID: that.piles['js-waste'].getID(),
-				prev: true
-			};
-			moveCards(args);
-			card.uncover();
+	var moveAllCards = function (args) {
+		var fromPile = that.piles[args.fromID];
+		var toPile = that.piles[args.toID];
+
+		var pile = fromPile.getCards(0);
+		pile.reverse();
+		pile.forEach(function (card) {
+			(card.getCovered() ? card.uncover : card.cover)();
 		});
+		toPile.addCards(pile);
+
+		if (!args.revert) {
+			registerMove({move: 'moveAll', args: args});
+		}
+	};
+
+	var dealFromStack = function () {
+		var stack = that.piles['js-stack'];
+		var args;
+		$('#js-stack').click(function () {
+			console.log(stack.length())
+			if(stack.length() === 0) {
+				args = {
+					fromID: that.piles['js-waste'].getID(),
+					toID: that.piles['js-stack'].getID(),
+					prev: true
+				};
+				moveAllCards(args);
+			} else {
+				var card = that.piles['js-stack'].getLastCard();
+				args = {
+					cardID: card.getID(),
+					fromID: that.piles['js-stack'].getID(),
+					toID: that.piles['js-waste'].getID(),
+					prev: true
+				};
+				moveCards(args);
+				card.uncover();
+				}
+			});
 	};
 
 	var setRules = function () {
@@ -91,14 +119,24 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 	};
 
 	var revert = function (input) {
-		moveCards({
-			fromID: input.args.toID,
-			toID: input.args.fromID,
-			cardID: input.args.cardID,
-			revert: true
-		});
-		if(input.args.prev) {
-			that.piles[input.args.fromID].coverFirst();
+		switch (input.move) {
+			case 'move':
+				moveCards ({
+					fromID: input.args.toID,
+					toID: input.args.fromID,
+					cardID: input.args.cardID,
+					revert: true
+				});
+				if (input.args.prev) {
+					that.piles[input.args.fromID].coverFirst();
+				}
+				break;
+			case 'moveAll':
+				moveAllCards({
+					fromID: input.args.toID,
+					toID: input.args.fromID,
+					revert: true
+				});
 		}
 	};
 

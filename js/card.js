@@ -63,10 +63,10 @@ SOLITAIRE.CardController = function (model, view) {
 	};
 
 	this.uncover = function () {
-		var v = view.$element;
+		var element = view.$element;
 		model.setCover(false);
 
-		v.draggable({
+		element.draggable({
 			stack: ".card",
 
 			revert : function(event, ui) {
@@ -119,12 +119,14 @@ SOLITAIRE.CardController = function (model, view) {
 			}
 		});
 
-		v.on('mousedown', function () {
+		element.draggable('enable');
+
+		element.on('mousedown', function () {
 			$(this).addClass('prime');
 			$(this).nextAll().addClass('hold');
 		});
 
-		v.on('mouseup', function () {
+		element.on('mouseup', function () {
 			$(this).removeClass('prime');
 		});
 	};
