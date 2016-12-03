@@ -103,4 +103,17 @@ ul {
   top: 2vw;
   left: 0; }
 
+#js-retry {
+  min-width: 7vw;
+  max-height: 3vw;
+  position: absolute;
+  font-size: 1vw;
+  line-height: 2vw;
+  padding: 0;
+  top: 4vw;
+  left: 0; }
+
+.score {
+  min-height: 6vw; }
+
 /*# sourceMappingURL=style.css.map */

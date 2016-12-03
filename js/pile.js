@@ -28,9 +28,9 @@ SOLITAIRE.PileModel = function (id) {
 		that.cardAdded.notify({items: cards});
 	};
 
-	this.indexOf = function(card) {
+	this.indexOf = function(cardID) {
 		for (var i = 0; i < that.cards.length; i += 1) {
-			if(that.cards[i].getID() === card) {
+			if(that.cards[i].getID() === cardID) {
 				return i;
 			}
 		}

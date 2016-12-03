@@ -51,12 +51,12 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 
 	var createScoreCard = function(){
 		var model = new SOLITAIRE.ScoreModel(table);
-		var view = new SOLITAIRE.ScoreView(model, $('#js-score'));
+		var view = new SOLITAIRE.ScoreView(model, $('#js-points'), $('#js-moves'));
 		var controller = new SOLITAIRE.ScoreController(model, view);
 
 		$('#js-board').on('points', function (event, args) {
 			controller.countPoints(args);
-			console.log('inside');
+
 		});
 	};
 
@@ -100,7 +100,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		var stack = that.piles['js-stack'];
 		var args;
 		$('#js-stack').click(function () {
-			console.log(stack.length());
+
 			if(stack.length() === 0) {
 				args = {
 					fromID: that.piles['js-waste'].getID(),
@@ -121,8 +121,6 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 				}
 			});
 	};
-	
-	
 
 	var setRules = function () {
 		for (var key in piles) {
@@ -157,6 +155,17 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		}
 	};
 
+	var isVictory = function () {
+		var result =  that.piles['js-foundation-0'].length === 13 &&
+			that.piles['js-foundation-1'].length === 13 &&
+			that.piles['js-foundation-2'].length === 13 &&
+			that.piles['js-foundation-3'].length === 13;
+		if(result) {
+			console.log('Victory!');
+		}
+		return result;
+	};
+
 	var cleanMoves = function () {
 		moves = [];
 	};
@@ -180,6 +189,50 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 
 		$('#js-new-game').click(function () {
 			SOLITAIRE.newGame();
+		});
+
+		$('#js-retry').click(function () {
+			while (moves.length !== 0) {
+				var move = moves.pop();
+				revert[move.move](move);
+			}
+		});
+
+		$('#js-board').on('points', function () {
+			var done = false;
+			var tryWith = function (foundation, tableau, card) {
+				if (!(typeof card === 'undefined')) {
+					var cards = {
+						fromID: tableau.getID(),
+						toDrop: card,
+						onPile: foundation.getLastCard()
+					};
+					if (foundation.test(cards)) {
+						var args = {
+							cardID: card.getID(),
+							fromID: tableau.getID(),
+							toID: foundation.getID(),
+							prev: true
+						};
+						console.log(args);
+						moveCards(args);
+					}
+				}
+			};
+
+			if($('.covered').length === 0 && that.piles['js-waste'].length() === 0 && !done) {
+				done = true;
+				while (!isVictory()) {
+					for (var i = 0; i < piles.tableau.length; i += 1) {
+						var tableau = that.piles[piles.tableau[i]];
+						for (var j = 0; j < piles.foundation.length; j += 1) {
+							var foundation = that.piles[piles.foundation[j]];
+							var card = tableau.getLastCard();
+							tryWith(foundation, tableau, card);
+						}
+					}
+				}
+			}
 		});
 	};
 };
