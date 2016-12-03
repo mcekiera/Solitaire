@@ -49,7 +49,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		}
 	};
 
-	var createScoreCard = function(){
+	var setScoreCard = function(){
 		var model = new SOLITAIRE.ScoreModel(table);
 		var view = new SOLITAIRE.ScoreView(model, $('#js-points'), $('#js-moves'));
 		var controller = new SOLITAIRE.ScoreController(model, view);
@@ -57,6 +57,14 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		$('#js-board').on('points', function (event, args) {
 			controller.countPoints(args);
 		});
+	};
+
+	var setTimer = function () {
+		var model = new SOLITAIRE.TimerModel();
+		var view = new SOLITAIRE.TimerView(model, $('#js-time'));
+		var controller = new SOLITAIRE.TimerController(model, view);
+
+		controller.init();
 	};
 
 	var uncoverLast = function () {
@@ -179,7 +187,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		dealFromStack();
 		setRules();
 		cleanMoves();
-		createScoreCard();
+		setScoreCard();
+		setTimer();
 
 		$('#js-revert').click(function () {
 			var move = moves.pop();

@@ -125,7 +125,7 @@ SOLITAIRE.PileController = function (model, view) {
 	this.uncoverLast = function () {
 		var card = that.getLastCard();
 		if (typeof card !== 'undefined' && card.getCovered()) {
-			view.$element.trigger('points', { uncover: true });
+			view.$element.trigger('points', { direct: true });
 			card.uncover();
 		}
 	};

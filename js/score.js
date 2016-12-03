@@ -43,8 +43,8 @@ SOLITAIRE.ScoreController = function (model, view) {
 
 	this.countPoints = function(args) {
 		"use strict";
-		if(args.uncover) {
-			model.updatePoints(5, false);
+		if(args.direct) {
+			model.updatePoints(args.direct, false);
 		} else if (!args.revert) {
 			model.updatePoints(scoreMove(args), true);
 		} else {
