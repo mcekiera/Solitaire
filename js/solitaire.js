@@ -18,12 +18,31 @@ var SOLITAIRE = {
 			'js-tableau-6': 7
 		};
 
+		var table = {
+			tableau: {
+				foundation: 10,
+				tableau: 0
+			},
+			foundation: {
+				tableau: -15
+			},
+			waste: {
+				tableau: 5,
+				foundation: 10
+			},
+			stack: {
+				waste: 0,
+				tableau: 0,
+				foundation: 0
+			}
+		};
+
 		this.colors = ['clubs', 'spades', 'hearts', 'tiles'];
 		this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 		this.deck = new SOLITAIRE.Deck();
 		this.rules = new SOLITAIRE.Rulebook();
-		this.board = new SOLITAIRE.Board(this.deck,piles,deal,this.rules);
+		this.board = new SOLITAIRE.Board(this.deck,piles,deal,this.rules,table);
 		this.board.init();
 
 		this.newGame = function () {

@@ -1,6 +1,12 @@
-$cardW: 94px;
-$cardH: 130px;
+$cardW: 7.2vw;//94px;
+$cardH: 10vw; //130px;
 $tight: $cardW + (($cardH - $cardW) / 2);
+
+@mixin border-radius($val) {
+  -webkit-border-radius: $val;
+  -moz-border-radius: $val;
+  border-radius: $val;
+}
 
 * {
   //border: 1px solid #fff;
@@ -14,42 +20,40 @@ body {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0;
   position: absolute;
-  top: $cardW;
+  padding-top: $cardW;
   left: 0;
   min-width: 100%;
   min-height: 100%;
   &.tight {
-	top: $tight;
+	padding-top: $tight;
   }
 }
 
-li {
-  margin-top: -$cardW;
-  .tight & {
-	margin-top: -$tight;
+.board {
+  position: relative;
+
+
+  &__top {
+	min-height: 30vh;
   }
-}
 
-.board__top {
-  min-height: 30vh;
-}
-
-.board__bottom {
-  min-height: 70vh;
+  &__bottom {
+	min-height: 60vh;
+  }
 }
 
 .col-pile-1 {
-  min-width: 80px;
+  min-width: $cardW;
 }
 
 .col-pile-4 {
-  min-width: 320px;
+  min-width: $cardW * 4;
 }
 
 .col-pile-offset-1 {
-  margin-left: 80px;
+  margin-left: $cardW;
 }
 
 .box {
@@ -59,60 +63,57 @@ li {
 
 .pile {
   border: 1px dotted #fff;
-  //background-color: #000;
   display: inline-block;
-  float: left;
+  float: none;
   position: relative;
   height: 100%;
   min-height: $cardH;
   width: $cardW;
   background-color: #339933;
-  margin: 5px;
-}
+  margin: 1vw;
 
-.stash {
-  position: relative;
+  &.stash {
+	position: relative;
 
-  ul {
-	top: 0px;
-	li {
-	  margin-top: 0px;
-	  position: absolute;
-	}
-  }
+	.card {
+		margin-top: 0px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	  }
 
-  li {
-	position: absolute;
-	top: 0;
-	left: 0;
   }
 }
 
 .card {
+  @include border-radius(7px);
   width: $cardW;
   height: $cardH;
   display: block;
   background-color: #ff0000;
   position: relative;
   border: 1px solid #000;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
+  margin-top: -$cardW;
+
+  .tight & {
+	margin-top: -$tight;
+  }
 
   &.uncovered:after {
+	@include border-radius(5px);
     content: '';
-	//border: 1px solid #000;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
     position: absolute;
     top: 0;
     left: 0;
     min-width: 100%;
     min-height: 100%;
 	background: #fff;
-	padding: 10px 0;
+
   }
+}
+
+.stash {
+
 }
 
 .board {
@@ -121,4 +122,26 @@ li {
 	margin: 0 auto;
 	display: block;
   }
+}
+
+#js-revert {
+  min-width: 7vw;
+  max-height: 3vw;
+  position: absolute;
+  font-size: 1vw;
+  line-height: 2vw;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+#js-new-game {
+  min-width: 7vw;
+  max-height: 3vw;
+  position: absolute;
+  font-size: 1vw;
+  line-height: 2vw;
+  padding: 0;
+  top: 2vw;
+  left: 0;
 }

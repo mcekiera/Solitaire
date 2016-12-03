@@ -1,4 +1,4 @@
-SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
+SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	"use strict";
 	var that = this;
 	var moves = [];
@@ -42,10 +42,22 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		for (var key in deal) {
 			if (deal.hasOwnProperty(key)) {
 				for (var k = 0; k < deal[key]; k += 1) {
-					that.piles[key].addCard(deck.getRandomCard());
+					var card = deck.getRandomCard();
+					that.piles[key].addCard(card);
 				}
 			}
 		}
+	};
+
+	var createScoreCard = function(){
+		var model = new SOLITAIRE.ScoreModel(table);
+		var view = new SOLITAIRE.ScoreView(model, $('#js-score'));
+		var controller = new SOLITAIRE.ScoreController(model, view);
+
+		$('#js-board').on('points', function (event, args) {
+			controller.countPoints(args);
+			console.log('inside');
+		});
 	};
 
 	var uncoverLast = function () {
@@ -58,11 +70,14 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		var fromPile = that.piles[args.fromID];
 		var toPile = that.piles[args.toID];
 		var index = fromPile.indexOf(args.cardID);
-		toPile.addCards(fromPile.getCards(index));
+		var cards = fromPile.getCards(index);
+		toPile.addCards(cards);
 
 		if (!args.revert) {
 			registerMove({move: 'move', args: args});
 		}
+
+		$('#js-board').trigger('points',(args));
 	};
 
 	var moveAllCards = function (args) {
@@ -85,7 +100,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		var stack = that.piles['js-stack'];
 		var args;
 		$('#js-stack').click(function () {
-			console.log(stack.length())
+			console.log(stack.length());
 			if(stack.length() === 0) {
 				args = {
 					fromID: that.piles['js-waste'].getID(),
@@ -106,6 +121,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 				}
 			});
 	};
+	
+	
 
 	var setRules = function () {
 		for (var key in piles) {
@@ -118,25 +135,25 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		}
 	};
 
-	var revert = function (input) {
-		switch (input.move) {
-			case 'move':
-				moveCards ({
-					fromID: input.args.toID,
-					toID: input.args.fromID,
-					cardID: input.args.cardID,
-					revert: true
-				});
-				if (input.args.prev) {
-					that.piles[input.args.fromID].coverFirst();
-				}
-				break;
-			case 'moveAll':
-				moveAllCards({
-					fromID: input.args.toID,
-					toID: input.args.fromID,
-					revert: true
-				});
+	var revert = {
+		move: function (input) {
+			 moveCards ({
+				fromID: input.args.toID,
+				toID: input.args.fromID,
+				cardID: input.args.cardID,
+				revert: true
+			});
+			if (input.args.prev) {
+				that.piles[input.args.fromID].coverFirst();
+			}
+
+		},
+		moveAll: function (input) {
+			moveAllCards({
+				fromID: input.args.toID,
+				toID: input.args.fromID,
+				revert: true
+			});
 		}
 	};
 
@@ -154,9 +171,11 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook) {
 		dealFromStack();
 		setRules();
 		cleanMoves();
+		createScoreCard();
 
 		$('#js-revert').click(function () {
-			revert(moves.pop());
+			var move = moves.pop();
+			revert[move.move](move);
 		});
 
 		$('#js-new-game').click(function () {

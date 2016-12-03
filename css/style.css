@@ -7,87 +7,100 @@ body {
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding-left: 0;
   position: absolute;
-  top: 94px;
+  padding-top: 7.2vw;
   left: 0;
   min-width: 100%;
   min-height: 100%; }
   ul.tight {
-    top: 112px; }
+    padding-top: 8.6vw; }
 
-li {
-  margin-top: -94px; }
-  .tight li {
-    margin-top: -112px; }
-
-.board__top {
-  min-height: 30vh; }
-
-.board__bottom {
-  min-height: 70vh; }
+.board {
+  position: relative; }
+  .board__top {
+    min-height: 30vh; }
+  .board__bottom {
+    min-height: 60vh; }
 
 .col-pile-1 {
-  min-width: 80px; }
+  min-width: 7.2vw; }
 
 .col-pile-4 {
-  min-width: 320px; }
+  min-width: 28.8vw; }
 
 .col-pile-offset-1 {
-  margin-left: 80px; }
+  margin-left: 7.2vw; }
 
 .box {
-  min-height: 130px;
+  min-height: 10vw;
   position: relative; }
 
 .pile {
   border: 1px dotted #fff;
   display: inline-block;
-  float: left;
+  float: none;
   position: relative;
   height: 100%;
-  min-height: 130px;
-  width: 94px;
+  min-height: 10vw;
+  width: 7.2vw;
   background-color: #339933;
-  margin: 5px; }
-
-.stash {
-  position: relative; }
-  .stash ul {
-    top: 0px; }
-    .stash ul li {
+  margin: 1vw; }
+  .pile.stash {
+    position: relative; }
+    .pile.stash .card {
       margin-top: 0px;
-      position: absolute; }
-  .stash li {
-    position: absolute;
-    top: 0;
-    left: 0; }
+      position: absolute;
+      top: 0;
+      left: 0; }
 
 .card {
-  width: 94px;
-  height: 130px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  width: 7.2vw;
+  height: 10vw;
   display: block;
   background-color: #ff0000;
   position: relative;
   border: 1px solid #000;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px; }
+  margin-top: -7.2vw; }
+  .tight .card {
+    margin-top: -8.6vw; }
   .card.uncovered:after {
-    content: '';
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     min-width: 100%;
     min-height: 100%;
-    background: #fff;
-    padding: 10px 0; }
+    background: #fff; }
 
 .board__top, .board__bottom {
   margin: 0 auto;
   display: block; }
+
+#js-revert {
+  min-width: 7vw;
+  max-height: 3vw;
+  position: absolute;
+  font-size: 1vw;
+  line-height: 2vw;
+  padding: 0;
+  top: 0;
+  left: 0; }
+
+#js-new-game {
+  min-width: 7vw;
+  max-height: 3vw;
+  position: absolute;
+  font-size: 1vw;
+  line-height: 2vw;
+  padding: 0;
+  top: 2vw;
+  left: 0; }
 
 /*# sourceMappingURL=style.css.map */
