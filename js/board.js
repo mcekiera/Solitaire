@@ -56,7 +56,6 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 
 		$('#js-board').on('points', function (event, args) {
 			controller.countPoints(args);
-
 		});
 	};
 
@@ -198,8 +197,10 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 			}
 		});
 
+		var finished = false;
+
 		$('#js-board').on('points', function () {
-			var done = false;
+
 			var tryWith = function (foundation, tableau, card) {
 				if (!(typeof card === 'undefined')) {
 					var cards = {
@@ -220,9 +221,9 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 				}
 			};
 
-			if($('.covered').length === 0 && that.piles['js-waste'].length() === 0 && !done) {
-				done = true;
-				while (!isVictory()) {
+			if($('.covered').length === 0 && that.piles['js-waste'].length() === 0 && !finished) {
+				finished = true;
+				for (var r = 0; r < 13; r += 1) {
 					for (var i = 0; i < piles.tableau.length; i += 1) {
 						var tableau = that.piles[piles.tableau[i]];
 						for (var j = 0; j < piles.foundation.length; j += 1) {

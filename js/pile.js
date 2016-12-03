@@ -88,9 +88,13 @@ SOLITAIRE.PileController = function (model, view) {
 
 	this.coverFirst = function (num) {
 		var card = view.$element.find('.uncovered').first().attr('id');
-		model.cards.filter(function (c) {
-			return c.getID() === card;
-		})[0].cover();
+		try {
+			model.cards.filter(function (c) {
+				return c.getID() === card;
+			})[0].cover();
+		} catch (err) {
+			console.log("There was no card to cover");
+		}
 	};
 
 	this.length = function () {
@@ -121,6 +125,7 @@ SOLITAIRE.PileController = function (model, view) {
 	this.uncoverLast = function () {
 		var card = that.getLastCard();
 		if (typeof card !== 'undefined' && card.getCovered()) {
+			view.$element.trigger('points', { uncover: true });
 			card.uncover();
 		}
 	};

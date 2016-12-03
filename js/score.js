@@ -9,9 +9,9 @@ SOLITAIRE.ScoreModel = function (table) {
 	this.getMoves = function () {
 		return moves;
 	};
-	this.updatePoints = function (val) {
+	this.updatePoints = function (val, countMove) {
 		points += val;
-		moves += 1;
+		moves += countMove ? 1 : 0;
 		that.update.notify({});
 		console.log(points);
 	};
@@ -43,14 +43,16 @@ SOLITAIRE.ScoreController = function (model, view) {
 
 	this.countPoints = function(args) {
 		"use strict";
-		if (!args.revert) {
-			model.updatePoints( scoreMove(args));
+		if(args.uncover) {
+			model.updatePoints(5, false);
+		} else if (!args.revert) {
+			model.updatePoints(scoreMove(args), true);
 		} else {
 			model.updatePoints(-scoreMove({
 				fromID: args.toID,
 				toID: args.fromID,
 				cardID: args.cardID
-			}));
+			}), true);
 		}
 		console.log('countPoints');
 	};

@@ -127,36 +127,35 @@ ul {
 #js-revert {
   min-width: 7vw;
   max-height: 3vw;
-  position: absolute;
   font-size: 1vw;
   line-height: 2vw;
   padding: 0;
-  top: 0;
-  left: 0;
 }
 
 #js-new-game {
   min-width: 7vw;
   max-height: 3vw;
-  position: absolute;
   font-size: 1vw;
   line-height: 2vw;
   padding: 0;
-  top: 2vw;
-  left: 0;
 }
 
 #js-retry {
   min-width: 7vw;
   max-height: 3vw;
-  position: absolute;
   font-size: 1vw;
   line-height: 2vw;
   padding: 0;
-  top: 4vw;
-  left: 0;
 }
 
 .score {
   min-height: 2 * 3vw;
+}
+
+.panel {
+  max-width: 9vw;
+  padding: 1vw;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
