@@ -12,12 +12,31 @@ $colors: 'clubs', 'spades', 'hearts', 'tiles';
   @each $rank in $ranks {
 
 	##{$color}-#{$rank}.uncovered:after {
-	  @include fullBackground('../img/#{$color}/#{$color}-#{$rank}.svg');
+	  @include fullBackground('../img/big/#{$color}/#{$color}-#{$rank}.svg');
 	}
 
   }
 }
 
 .card {
-  @include fullBackground('../img/back.svg');
+  @include fullBackground('../img/big/back.svg');
 }
+
+
+@media only screen and (max-width : 768px) {
+  @each $color in $colors {
+	@each $rank in $ranks {
+
+	  ##{$color}-#{$rank}.uncovered:after {
+		@include fullBackground('../img/small/#{$color}/#{$color}-#{$rank}.svg');
+	  }
+
+	}
+  }
+
+  .card {
+	@include fullBackground('../img/small/back.svg');
+  }
+}
+
+
