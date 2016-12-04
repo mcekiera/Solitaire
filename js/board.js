@@ -97,11 +97,9 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		});
 
 		$('.card').on('mousedown', function () {
-			
 			if(!timer.isWorking()) {
 				startTimer();
 			}
-			
 		});
 
 		$('#js-instruction').click(function () {
@@ -279,9 +277,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	};
 
 	var startTimer = function () {
-		
 		timer.init();
-		
 	};
 
 	var finishGame = function () {
@@ -299,8 +295,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 						toID: foundation.getID(),
 						prev: true
 					};
-					
-					moveCards(args);
+
+					setTimeout(function() {moveCards(args);}, 500);
 				}
 			}
 		};
