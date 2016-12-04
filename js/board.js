@@ -2,6 +2,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	"use strict";
 	var that = this;
 	var moves = [];
+	var scoreCard;
+	var timer;
 
 	var createPile = function (id) {
 		var model = new SOLITAIRE.PileModel(id);
@@ -22,21 +24,24 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		return controller;
 	};
 
-	this.piles = (function () {
-		var object = {};
-		for (var key in piles) {
-			if (piles.hasOwnProperty(key)) {
-				that[key] = [];
-				for (var i = 0; i < piles[key].length; i += 1) {
-					var pile = createPile(piles[key][i]);
-					object[piles[key][i]] = pile;
-					
-					that[key].push(pile);
+	var setPiles = function () {
+		that.piles = (function () {
+			var object = {};
+			for (var key in piles) {
+				if (piles.hasOwnProperty(key)) {
+					that[key] = [];
+					for (var i = 0; i < piles[key].length; i += 1) {
+						var pile = createPile(piles[key][i]);
+						object[piles[key][i]] = pile;
+
+						that[key].push(pile);
+					}
 				}
 			}
-		}
-		return object;
-	}());
+			return object;
+		})();
+	};
+
 
 	var dealCards = function () {
 		for (var key in deal) {
@@ -54,6 +59,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		var view = new SOLITAIRE.ScoreView(model, $('#js-points'), $('#js-moves'));
 		var controller = new SOLITAIRE.ScoreController(model, view);
 
+		scoreCard = controller;
+
 		$('#js-board').on('points', function (event, args) {
 			controller.countPoints(args);
 		});
@@ -64,10 +71,44 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		var view = new SOLITAIRE.TimerView(model, $('#js-time'));
 		var controller = new SOLITAIRE.TimerController(model, view);
 
-		controller.init();
+		timer = controller;
 	};
 
-	var uncoverLast = function () {
+	var setListeners = function () {
+		$('#js-revert').click(function () {
+			var move = moves.pop();
+			revert[move.move](move);
+		});
+
+		$('#js-new-game').click(function () {
+			SOLITAIRE.newGame();
+		});
+
+		$('#js-retry').click(function () {
+			while (moves.length !== 0) {
+				var move = moves.pop();
+				revert[move.move](move);
+			}
+			scoreCard.reset();
+			timer.reset();
+		});
+
+		$('#js-board').on('points', function () {
+			if(gameIsWon()) {
+				finishGame();
+			}
+		});
+
+		$('.card').on('mousedown', function () {
+			console.log(timer.isWorking());
+			if(!timer.isWorking()) {
+				startTimer();
+			}
+			console.log(timer.isWorking());
+		});
+	};
+
+	var uncoverLastCardInPile = function () {
 		for(var c = 0; c < that.tableau.length; c += 1) {
 			that.tableau[c].uncoverLast();
 		}
@@ -100,6 +141,9 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 
 		if (!args.revert) {
 			registerMove({move: 'moveAll', args: args});
+			$('#js-board').trigger('points', { direct: -100 });
+		} else {
+			$('#js-board').trigger('points', { direct: 100 });
 		}
 	};
 
@@ -181,68 +225,62 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		moves.push(args);
 	};
 
+	var gameIsWon = function () {
+		return $('.covered').length === 0 && that.piles['js-waste'].length() === 0;
+	};
+
+	var startTimer = function () {
+		console.log('start timer')
+		timer.init();
+		console.log(timer.isWorking());
+	};
+
+	var finishGame = function () {
+		var tryWith = function (foundation, tableau, card) {
+			if (!(typeof card === 'undefined')) {
+				var cards = {
+					fromID: tableau.getID(),
+					toDrop: card,
+					onPile: foundation.getLastCard()
+				};
+				if (foundation.test(cards)) {
+					var args = {
+						cardID: card.getID(),
+						fromID: tableau.getID(),
+						toID: foundation.getID(),
+						prev: true
+					};
+					console.log(args);
+					moveCards(args);
+				}
+			}
+		};
+
+		for (var r = 0; r < 13; r += 1) {
+			for (var i = 0; i < piles.tableau.length; i += 1) {
+				var tableau = that.piles[piles.tableau[i]];
+				for (var j = 0; j < piles.foundation.length; j += 1) {
+					var foundation = that.piles[piles.foundation[j]];
+					var card = tableau.getLastCard();
+					tryWith(foundation, tableau, card);
+				}
+			}
+			if(isVictory()) {
+				timer.stop();
+				break;
+			}
+		}
+	};
+
 	this.init = function () {
+		setPiles();
 		dealCards();
-		uncoverLast();
+		uncoverLastCardInPile();
 		dealFromStack();
 		setRules();
 		cleanMoves();
 		setScoreCard();
 		setTimer();
-
-		$('#js-revert').click(function () {
-			var move = moves.pop();
-			revert[move.move](move);
-		});
-
-		$('#js-new-game').click(function () {
-			SOLITAIRE.newGame();
-		});
-
-		$('#js-retry').click(function () {
-			while (moves.length !== 0) {
-				var move = moves.pop();
-				revert[move.move](move);
-			}
-		});
-
-		var finished = false;
-
-		$('#js-board').on('points', function () {
-
-			var tryWith = function (foundation, tableau, card) {
-				if (!(typeof card === 'undefined')) {
-					var cards = {
-						fromID: tableau.getID(),
-						toDrop: card,
-						onPile: foundation.getLastCard()
-					};
-					if (foundation.test(cards)) {
-						var args = {
-							cardID: card.getID(),
-							fromID: tableau.getID(),
-							toID: foundation.getID(),
-							prev: true
-						};
-						console.log(args);
-						moveCards(args);
-					}
-				}
-			};
-
-			if($('.covered').length === 0 && that.piles['js-waste'].length() === 0 && !finished) {
-				finished = true;
-				for (var r = 0; r < 13; r += 1) {
-					for (var i = 0; i < piles.tableau.length; i += 1) {
-						var tableau = that.piles[piles.tableau[i]];
-						for (var j = 0; j < piles.foundation.length; j += 1) {
-							var foundation = that.piles[piles.foundation[j]];
-							var card = tableau.getLastCard();
-							tryWith(foundation, tableau, card);
-						}
-					}
-				}
-			}
-		});
+		setListeners();
 	};
 };

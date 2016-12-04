@@ -6,15 +6,25 @@ SOLITAIRE.ScoreModel = function (table) {
 	this.getPoints = function () {
 		return points;
 	};
+
 	this.getMoves = function () {
 		return moves;
 	};
+
 	this.updatePoints = function (val, countMove) {
 		points += val;
+		points = points < 0 ? 0 : points;
 		moves += countMove ? 1 : 0;
 		that.update.notify({});
 		console.log(points);
 	};
+
+	this.reset = function () {
+		points = 0;
+		moves = 0;
+		that.update.notify({});
+	};
+
 	this.table = table;
 	this.update = new SOLITAIRE.Event(this);
 };
@@ -32,6 +42,8 @@ SOLITAIRE.ScoreView = function (model, points, moves) {
 };
 
 SOLITAIRE.ScoreController = function (model, view) {
+	this.reset = model.reset;
+
 	var scoreMove = function(args) {
 		var from = args.fromID.replace(/^[^-]*-|-[^-]*$/g,'');
 		var to =  args.toID.replace(/^[^-]*-|-[^-]*$/g,'');

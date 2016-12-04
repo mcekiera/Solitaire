@@ -96,16 +96,103 @@
                 <button id="js-revert" class="btn btn-default"><i class="fa fa-undo" aria-hidden="true"></i></button>
                 <button id="js-new-game" class="btn btn-default">NEW GAME</button>
                 <button id="js-retry" class="btn btn-default">RETRY</button>
-                <div class="score">
-                    <h1>SCORE:<span id="js-points">0</span></h1>
-                    <h1>MOVES:<span id="js-moves">0</span></h1>
-                    <h1 id="js-time">00:00:00</h1>
-                </div>
+                <table class="score table">
+                    <tr>
+                        <td>SCORE:</td>
+                        <td id="js-points">0</td>
+                    </tr>
+                    <tr>
+                        <td>MOVES:</td>
+                        <td id="js-moves">0</td>
+                    </tr>
+                    <tr>
+                        <td>TIME:</td>
+                        <td id="js-time">00:00</td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Launch demo modal
+                </button>
             </div>
         </div>
     </section>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info">
+                            <p>The four foundations (light rectangles in the upper right of the figure) are built up
+                                by suit from Ace (low in this game) to King, and the tableau piles can be built down
+                                by alternate colors, and partial or complete piles can be moved if they are built down
+                                by alternate colors also. Any empty piles can be filled with a King or a pile of cards
+                                with a King. The aim of the game is to build up a stack of cards starting with two and
+                                ending with King, all of the same suit. Once this is accomplished, the goal is to move
+                                this to a foundation, where the player has previously placed the Ace of that suit.
+                                Once the player has done this, they will have "finished" that suit, the goal being
+                                to finish all suits, at which time the player would have won.
+                            </p>
+                            <strong>Score rules:</strong>
+                            <table class="table">
+                                <tr>
+                                    <th>Move</th>
+                                    <th>Points</th>
+                                </tr>
+                                <tr>
+                                    <td>Waste to Tableau</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Waste to Foundation</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Tableau to Foundation</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Turn over Tableau card</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Foundation to Tableau</td>
+                                    <td>-15</td>
+                                </tr>
+                                <tr>
+                                    <td>Recycle waste</td>
+                                    <td>-100 (minimum score is 0)</td>
+                                </tr>
+                            </table>
+                            <p><a href="https://en.wikipedia.org/wiki/Klondike_(solitaire)" target="_blank">
+                                "Klondike(Solitaire)" in Wikipedia: The Free Encyclopedia</a></p>
+                        </div>
+                        <div class="credits">
+                            <p>Created by <a href="https://github.com/mcekiera/Solitaire" target="_blank">Marcin Cekiera</a></p>
+                            <strong>Big card design: </strong>
+                            <p>Vectorized Playing Cards 2.0 -
+                                <a href="http://sourceforge.net/projects/vector-cards/" target="_blank">http://sourceforge.net/projects/vector-cards/</a>
+                                Copyright 2015 - Chris Aguilar - <a href="mailto:conjurenation@gmail.com">conjurenation@gmail.com</a>
+                                Licensed under LGPL 3 - <a href="www.gnu.org/copyleft/lesser.html" target="_blank">www.gnu.org/copyleft/lesser.html</a></p>
+                            <strong>Small card design: </strong>
+                            <p>
+                                <a href="http://www.flaticon.com/authors/madebyoliver" target="_blank">designed by Madebyol iver from Flaticon</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 
     <script src="js/solitaire.js" type="text/javascript"></script>
     <script src="js/event.js" type="text/javascript"></script>

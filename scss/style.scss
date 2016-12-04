@@ -149,13 +149,28 @@ ul {
 }
 
 .score {
-  min-height: 2 * 3vw;
+  min-height: 3 * 3vw;
+  margin-top: 1vw;
 }
 
 .panel {
+  font-size: 1vw;
   max-width: 9vw;
   padding: 1vw;
   position: absolute;
   top: 0;
   left: 0;
+
+  td:first-child {
+    text-align: left;
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+}
+
+.info {
+  min-width: 300px;
+  min-height: 300px;
 }

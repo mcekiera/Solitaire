@@ -105,13 +105,23 @@ ul {
   padding: 0; }
 
 .score {
-  min-height: 6vw; }
+  min-height: 9vw;
+  margin-top: 1vw; }
 
 .panel {
+  font-size: 1vw;
   max-width: 9vw;
   padding: 1vw;
   position: absolute;
   top: 0;
   left: 0; }
+  .panel td:first-child {
+    text-align: left; }
+  .panel td:last-child {
+    text-align: right; }
+
+.info {
+  min-width: 300px;
+  min-height: 300px; }
 
 /*# sourceMappingURL=style.css.map */
