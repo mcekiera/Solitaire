@@ -36,7 +36,6 @@ SOLITAIRE.TimerView = function (model, element) {
 	this.model = model;
 
 	this.model.changed.attach(function () {
-		console.log(model.getTime())
 		that.$element.text(model.getTime());
 	});
 };

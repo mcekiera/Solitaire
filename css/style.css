@@ -83,21 +83,7 @@ ul {
   margin: 0 auto;
   display: block; }
 
-#js-revert {
-  min-width: 7vw;
-  max-height: 3vw;
-  font-size: 1vw;
-  line-height: 2vw;
-  padding: 0; }
-
-#js-new-game {
-  min-width: 7vw;
-  max-height: 3vw;
-  font-size: 1vw;
-  line-height: 2vw;
-  padding: 0; }
-
-#js-retry {
+.btn {
   min-width: 7vw;
   max-height: 3vw;
   font-size: 1vw;
@@ -105,8 +91,8 @@ ul {
   padding: 0; }
 
 .score {
-  min-height: 9vw;
-  margin-top: 1vw; }
+  position: relative;
+  max-width: 7vw; }
 
 .panel {
   font-size: 1vw;

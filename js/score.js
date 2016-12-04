@@ -16,7 +16,7 @@ SOLITAIRE.ScoreModel = function (table) {
 		points = points < 0 ? 0 : points;
 		moves += countMove ? 1 : 0;
 		that.update.notify({});
-		console.log(points);
+		
 	};
 
 	this.reset = function () {
@@ -44,10 +44,13 @@ SOLITAIRE.ScoreView = function (model, points, moves) {
 SOLITAIRE.ScoreController = function (model, view) {
 	this.reset = model.reset;
 
+	this.getPoints = model.getPoints;
+	this.getMoves = model.getMoves;
+
 	var scoreMove = function(args) {
 		var from = args.fromID.replace(/^[^-]*-|-[^-]*$/g,'');
 		var to =  args.toID.replace(/^[^-]*-|-[^-]*$/g,'');
-		console.log(from + ',' + to);
+		
 
 		var points = model.table[from][to];
 		return typeof points === 'undefined' ? 0 : points;
@@ -66,6 +69,6 @@ SOLITAIRE.ScoreController = function (model, view) {
 				cardID: args.cardID
 			}), true);
 		}
-		console.log('countPoints');
+		
 	};
 };

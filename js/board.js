@@ -84,29 +84,78 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 			SOLITAIRE.newGame();
 		});
 
-		$('#js-retry').click(function () {
-			while (moves.length !== 0) {
-				var move = moves.pop();
-				revert[move.move](move);
-			}
-			scoreCard.reset();
-			timer.reset();
+		$('#js-modal-new').click(function () {
+			SOLITAIRE.newGame();
 		});
 
-		$('#js-board').on('points', function () {
-			if(gameIsWon()) {
-				finishGame();
-			}
+		$('#js-retry').click(function () {
+			retry();
+		});
+
+		$('#js-modal-retry').click(function () {
+			retry();
 		});
 
 		$('.card').on('mousedown', function () {
-			console.log(timer.isWorking());
+			
 			if(!timer.isWorking()) {
 				startTimer();
 			}
-			console.log(timer.isWorking());
+			
+		});
+
+		$('#js-instruction').click(function () {
+			showInstructions();
+		});
+
+		$('#js-credits').click(function () {
+			showCredits();
+		});
+
+		$('#js-stack').click(function () {
+			console.log("js-stack");
 		});
 	};
+
+	var retry = function () {
+		while (moves.length !== 0) {
+			var move = moves.pop();
+			console.log(move);
+			console.log(move.args)
+			revert[move.move](move);
+		}
+		uncoverLastCardInPile();
+		cleanMoves();
+		scoreCard.reset();
+		timer.reset();
+	};
+
+	var showInstructions = function () {
+		$('#js-modal-label').text("Instructions");
+		$('.mod').addClass('hidden');
+		$('#js-modal-info').removeClass('hidden');
+		$('#js-modal').modal();
+	};
+
+	var showCredits = function () {
+		$('#js-modal-label').text("Credits");
+		$('.mod').addClass('hidden');
+		$('#js-modal-credits').removeClass('hidden');
+		$('#js-modal').modal();
+	};
+
+	var showEndGame = function () {
+		$('#js-modal-label').text("Congratulations!");
+		$('.mod').addClass('hidden');
+		$('#js-modal-retry').removeClass('hidden');
+		$('#js-modal-new').removeClass('hidden');
+		$('#js-modal-end').removeClass('hidden');
+		$('#js-end-points').text(scoreCard.getPoints());
+		$('#js-end-moves').text(scoreCard.getMoves());
+		$('#js-end-time').text(timer.getTime());
+		$('#js-modal').modal();
+	};
+
 
 	var uncoverLastCardInPile = function () {
 		for(var c = 0; c < that.tableau.length; c += 1) {
@@ -123,6 +172,9 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 
 		if (!args.revert) {
 			registerMove({move: 'move', args: args});
+			if(gameIsWon()) {
+				finishGame();
+			}
 		}
 
 		$('#js-board').trigger('points',(args));
@@ -207,13 +259,10 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	};
 
 	var isVictory = function () {
-		var result =  that.piles['js-foundation-0'].length === 13 &&
-			that.piles['js-foundation-1'].length === 13 &&
-			that.piles['js-foundation-2'].length === 13 &&
-			that.piles['js-foundation-3'].length === 13;
-		if(result) {
-			console.log('Victory!');
-		}
+		var result =  that.piles['js-foundation-0'].length() === 13 &&
+			that.piles['js-foundation-1'].length() === 13 &&
+			that.piles['js-foundation-2'].length() === 13 &&
+			that.piles['js-foundation-3'].length() === 13;
 		return result;
 	};
 
@@ -230,14 +279,14 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	};
 
 	var startTimer = function () {
-		console.log('start timer')
+		
 		timer.init();
-		console.log(timer.isWorking());
+		
 	};
 
 	var finishGame = function () {
 		var tryWith = function (foundation, tableau, card) {
-			if (!(typeof card === 'undefined')) {
+			if (typeof card !== 'undefined') {
 				var cards = {
 					fromID: tableau.getID(),
 					toDrop: card,
@@ -250,7 +299,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 						toID: foundation.getID(),
 						prev: true
 					};
-					console.log(args);
+					
 					moveCards(args);
 				}
 			}
@@ -267,7 +316,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 			}
 			if(isVictory()) {
 				timer.stop();
-				break;
+				showEndGame();
 			}
 		}
 	};
@@ -277,8 +326,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		dealCards();
 		uncoverLastCardInPile();
 		dealFromStack();
-		setRules();
 		cleanMoves();
+		setRules();
 		setScoreCard();
 		setTimer();
 		setListeners();

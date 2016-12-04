@@ -96,7 +96,7 @@
                 <button id="js-revert" class="btn btn-default"><i class="fa fa-undo" aria-hidden="true"></i></button>
                 <button id="js-new-game" class="btn btn-default">NEW GAME</button>
                 <button id="js-retry" class="btn btn-default">RETRY</button>
-                <table class="score table">
+                <table class="score">
                     <tr>
                         <td>SCORE:</td>
                         <td id="js-points">0</td>
@@ -110,22 +110,21 @@
                         <td id="js-time">00:00</td>
                     </tr>
                 </table>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Launch demo modal
-                </button>
+                <button id="js-instruction" class="btn btn-default">INFO</button>
+                <button id="js-credits" class="btn btn-default">CREDITS</button>
             </div>
         </div>
     </section>
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="js-modal" tabindex="-1" role="dialog" aria-labelledby="js-modal-label">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        <h4 class="modal-title" id="js-modal-label">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="info">
+                        <div id="js-modal-info" class="mod hidden">
                             <p>The four foundations (light rectangles in the upper right of the figure) are built up
                                 by suit from Ace (low in this game) to King, and the tableau piles can be built down
                                 by alternate colors, and partial or complete piles can be moved if they are built down
@@ -168,22 +167,29 @@
                                 </tr>
                             </table>
                             <p><a href="https://en.wikipedia.org/wiki/Klondike_(solitaire)" target="_blank">
-                                "Klondike(Solitaire)" in Wikipedia: The Free Encyclopedia</a></p>
+                                from "Klondike(Solitaire)" in Wikipedia: The Free Encyclopedia</a></p>
                         </div>
-                        <div class="credits">
+                        <div id="js-modal-credits" class="mod hidden">
                             <p>Created by <a href="https://github.com/mcekiera/Solitaire" target="_blank">Marcin Cekiera</a></p>
                             <strong>Big card design: </strong>
                             <p>Vectorized Playing Cards 2.0 -
-                                <a href="http://sourceforge.net/projects/vector-cards/" target="_blank">http://sourceforge.net/projects/vector-cards/</a>
-                                Copyright 2015 - Chris Aguilar - <a href="mailto:conjurenation@gmail.com">conjurenation@gmail.com</a>
-                                Licensed under LGPL 3 - <a href="www.gnu.org/copyleft/lesser.html" target="_blank">www.gnu.org/copyleft/lesser.html</a></p>
+                                <a href="http://sourceforge.net/projects/vector-cards/" target="_blank">http://sourceforge.net/projects/vector-cards/</a></p>
+                             <p>Copyright 2015 - Chris Aguilar - <a href="mailto:conjurenation@gmail.com">conjurenation@gmail.com</a></p>
+                             <p>Licensed under LGPL 3 - <a href="www.gnu.org/copyleft/lesser.html" target="_blank">www.gnu.org/copyleft/lesser.html</a></p>
                             <strong>Small card design: </strong>
                             <p>
                                 <a href="http://www.flaticon.com/authors/madebyoliver" target="_blank">designed by Madebyol iver from Flaticon</a>
                             </p>
                         </div>
+                        <div id="js-modal-end" class="mod">
+                            <h1>SCORE: <span id="js-end-points"></span></h1>
+                            <h1>MOVES: <span id="js-end-moves"></span></h1>
+                            <h1>TIME: <span id="js-end-time"></span></h1>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="js-modal-retry" type="button" class="mod btn btn-default" data-dismiss="modal">Retry</button>
+                        <button id="js-modal-new" type="button" class="mod btn btn-default" data-dismiss="modal">New game</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
