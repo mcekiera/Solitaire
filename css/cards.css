@@ -317,6 +317,29 @@
   background-color: transparent; }
 
 @media only screen and (max-width: 768px) {
+  .card {
+    width: 9.4vw;
+    height: 13vw; }
+
+  .pile {
+    min-height: 13vw;
+    width: 9.4vw; }
+
+  .panel {
+    position: relative;
+    bottom: 0;
+    font-size: 3vw;
+    padding: 1vw;
+    min-width: 100vw; }
+    .panel .btn {
+      min-width: 13vw;
+      min-height: 13vw;
+      display: inline;
+      position: relative;
+      font-size: 3vw; }
+    .panel .score {
+      display: inline; }
+
   #clubs-A.uncovered:after {
     background-image: url("../img/small/clubs/clubs-A.svg");
     background-size: cover;

@@ -110,8 +110,8 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 			showCredits();
 		});
 
-		$('#js-stack').click(function () {
-			console.log("js-stack");
+		$(document).on('click', '#js-stack', function () {
+			dealFromStack();
 		});
 	};
 
@@ -200,27 +200,24 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	var dealFromStack = function () {
 		var stack = that.piles['js-stack'];
 		var args;
-		$('#js-stack').click(function () {
-
-			if(stack.length() === 0) {
-				args = {
-					fromID: that.piles['js-waste'].getID(),
-					toID: that.piles['js-stack'].getID(),
-					prev: true
-				};
-				moveAllCards(args);
-			} else {
-				var card = that.piles['js-stack'].getLastCard();
-				args = {
-					cardID: card.getID(),
-					fromID: that.piles['js-stack'].getID(),
-					toID: that.piles['js-waste'].getID(),
-					prev: true
-				};
-				moveCards(args);
-				card.uncover();
-				}
-			});
+		if(stack.length() === 0) {
+			args = {
+				fromID: that.piles['js-waste'].getID(),
+				toID: that.piles['js-stack'].getID(),
+				prev: true
+			};
+			moveAllCards(args);
+		} else {
+			var card = that.piles['js-stack'].getLastCard();
+			args = {
+				cardID: card.getID(),
+				fromID: that.piles['js-stack'].getID(),
+				toID: that.piles['js-waste'].getID(),
+				prev: true
+			};
+			moveCards(args);
+			card.uncover();
+			}
 	};
 
 	var setRules = function () {
@@ -296,7 +293,7 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 						prev: true
 					};
 
-					setTimeout(function() {moveCards(args);}, 500);
+					moveCards(args);
 				}
 			}
 		};
@@ -321,7 +318,6 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 		setPiles();
 		dealCards();
 		uncoverLastCardInPile();
-		dealFromStack();
 		cleanMoves();
 		setRules();
 		setScoreCard();

@@ -17,7 +17,8 @@ ul {
     padding-top: 8.6vw; }
 
 .board {
-  position: relative; }
+  position: relative;
+  height: 100%; }
   .board__top {
     min-height: 30vh; }
   .board__bottom {

@@ -1,5 +1,7 @@
 $ranks: 'A',2,3,4,5,6,7,8,9,10,'J','Q','K';
 $colors: 'clubs', 'spades', 'hearts', 'tiles';
+$cardW: 9.4vw;//94px;
+$cardH: 13vw; //130px;
 
 @mixin fullBackground($path) {
   background-image: url($path);
@@ -18,12 +20,44 @@ $colors: 'clubs', 'spades', 'hearts', 'tiles';
   }
 }
 
+
 .card {
   @include fullBackground('../img/big/back.svg');
 }
 
 
 @media only screen and (max-width : 768px) {
+  .card {
+	width: $cardW;
+	height: $cardH;
+  }
+
+  .pile {
+	min-height: $cardH;
+	width: $cardW;
+  }
+
+  .panel {
+	position: relative;
+	bottom: 0;
+	font-size: 3vw;
+	padding: 1vw;
+	min-width: 100vw;
+
+	.btn {
+	  min-width: $cardH;
+	  min-height: $cardH;
+	  display: inline;
+	  position: relative;
+	  font-size: 3vw;
+	}
+
+	.score {
+	  display: inline;
+	}
+
+  }
+
   @each $color in $colors {
 	@each $rank in $ranks {
 
