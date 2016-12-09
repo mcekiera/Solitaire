@@ -30,9 +30,12 @@ module.exports = function(config) {
 			'js/event.js',
 			'js/pile.js',
 			'js/rulebook.js',
+			'js/score.js',
+			'js/timer.js',
 			'js/main.js',
 
-			'test/rulebook.spec.js'
+			'test/rulebook.spec.js',
+			'test/timer.spec.js'
 		],
 
 

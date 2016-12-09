@@ -1,3 +1,7 @@
+/***
+ * Object that keep duration of current game in seconds.
+ * @constructor create single time keeping object.
+ */
 SOLITAIRE.TimerModel = function () {
 	var that = this;
 
