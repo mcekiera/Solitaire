@@ -278,7 +278,14 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 	};
 
 	var finishGame = function () {
-		var tryWith = function (foundation, tableau, card) {
+		var sequence = [];
+		var clock;
+
+		var tryWith = function () {
+			var data = sequence.pop();
+			var tableau = data.source;
+			var card = data.content;
+			var foundation = data.target;
 			if (typeof card !== 'undefined') {
 				var cards = {
 					fromID: tableau.getID(),
@@ -296,21 +303,31 @@ SOLITAIRE.Board = function (deck, piles, deal, rulebook, table) {
 					moveCards(args);
 				}
 			}
+			if(sequence.length === 0) {
+				clearInterval(clock);
+			}
 		};
 
-		for (var r = 0; r < 13; r += 1) {
-			for (var i = 0; i < piles.tableau.length; i += 1) {
-				var tableau = that.piles[piles.tableau[i]];
-				for (var j = 0; j < piles.foundation.length; j += 1) {
-					var foundation = that.piles[piles.foundation[j]];
-					var card = tableau.getLastCard();
-					tryWith(foundation, tableau, card);
-				}
+
+		for (var i = 0; i < piles.tableau.length; i += 1) {
+			var tableau = that.piles[piles.tableau[i]];
+			for (var j = 0; j < piles.foundation.length; j += 1) {
+				var foundation = that.piles[piles.foundation[j]];
+				var card = tableau.getLastCard();
+				sequence.push({target: foundation, source: tableau, content: card});
 			}
-			if(isVictory()) {
-				timer.stop();
-				showEndGame();
-			}
+		}
+
+		var finish = function () {
+			sequence = sequence.reverse();
+			clock = setInterval(tryWith, 5);
+		};
+
+		finish();
+
+		if(isVictory()) {
+			timer.stop();
+			showEndGame();
 		}
 	};
 
