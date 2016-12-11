@@ -79,10 +79,12 @@ SOLITAIRE.CardController = function (model, view) {
 					$(this).animate({top: "0", left: "0"}, 500);
 					$(this).removeClass('hold');
 				});
+
 				return 'true';
 			},
 
 			start: function(event, ui) {
+				$('.uncovered').not('.prime, .hold').draggable('disable');
 				$('.uncovered.hold').each(function() {
 					$(this).trigger('dragstart');
 				});
@@ -112,9 +114,9 @@ SOLITAIRE.CardController = function (model, view) {
 					$(this).trigger('dragstop');
 					$(this).removeClass('ui-draggable-dragging');
 				});
-
 				$('.uncovered.hold:first').css('top', maintop);
-				$(this).removeClass('prime');
+				$('.uncovered').draggable('enable');
+				$('.prime').removeClass('prime');
 				$('.hold').removeClass('hold');
 			}
 		});

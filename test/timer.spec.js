@@ -33,5 +33,5 @@ describe("Time keeping object", function () {
 		timer.reset();
 		expect(timer.getTime()).toBe("00:00");
 	});
-	
+
 });
